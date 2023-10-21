@@ -33,12 +33,14 @@ sudo apt-get install -y \
   make \
   gcc \
   g++ \
+  iperf3 \
   pkg-config \
   libfftw3-dev \
   libmbedtls-dev \
   libsctp-dev \
   libyaml-cpp-dev \
-  libgtest-dev
+  libgtest-dev \
+  ppp
 
 cd $SRCDIR
 git clone $SRS_PROJECT_REPO
