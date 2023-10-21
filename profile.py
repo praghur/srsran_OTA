@@ -194,7 +194,7 @@ def x310_node_pair(idx, x310_radio):
         srsran_hash = DEFAULT_SRSRAN_HASH
 
     cmd = "{} '{}'".format(SRSRAN_DEPLOY_SCRIPT, srsran_hash)
-    nuc_nodeb.addService(rspec.Execute(shell="bash", command=cmd))
+    node.addService(rspec.Execute(shell="bash", command=cmd))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-cpu.sh"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-sdr-iface.sh"))
 
