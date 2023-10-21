@@ -146,8 +146,7 @@ SRSRAN_DEPLOY_SCRIPT = os.path.join(BIN_PATH, "deploy-srsran.sh")
 
 
 def x310_node_pair(idx, x310_radio):
-    role = "nodeb"
-    node = request.RawPC("{}-gnb-comp".format(x310_radio))
+    node = request.RawPC("{}-gnuradio-comp".format(x310_radio))
     node.component_manager_id = COMP_MANAGER_ID
     node.hardware_type = params.sdr_nodetype
 
