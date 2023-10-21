@@ -133,6 +133,17 @@ associate and/or pick up an IP, try putting the module into airplane mode,
 rebooting the associated NUC, and bringing the module back online again.
 `chat` may return an error. If so, just run the command again.
 
+If you would like to monitor the spectrum of your network, and you are logging
+into these nodes from a machine capable of X11 forwarding, you can start an
+X-forwarded session to `ota-x310-1-gnuradio-comp` by passing `-X` to your SSH
+command, then doing:
+
+```
+uhd_fft -f3450e6 -g30 -s40e6
+```
+
+The spectrum occupancy will change as you attach UEs and pass traffic.
+
 """
 
 BIN_PATH = "/local/repository/bin"
