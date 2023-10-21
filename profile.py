@@ -188,13 +188,13 @@ def x310_node_pair(idx, x310_radio):
     nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 2), "255.255.255.0"))
     cn_link.addInterface(nodeb_cn_if)
 
-    if params.oai_ran_commit_hash:
-        oai_ran_hash = params.oai_ran_commit_hash
+    if params.srsran_commit_hash:
+        srsran_hash = params.srsran_commit_hash
     else:
-        oai_ran_hash = DEFAULT_NR_RAN_HASH
+        srsran_hash = DEFAULT_SRSRAN_HASH
 
-    cmd = "{} '{}' {}".format(OAI_DEPLOY_SCRIPT, oai_ran_hash, role)
-    node.addService(rspec.Execute(shell="bash", command=cmd))
+    cmd = "{} '{}'".format(SRSRAN_DEPLOY_SCRIPT, srsran_hash)
+    nuc_nodeb.addService(rspec.Execute(shell="bash", command=cmd))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-cpu.sh"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-sdr-iface.sh"))
 
