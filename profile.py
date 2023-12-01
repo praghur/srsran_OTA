@@ -242,8 +242,7 @@ pc.defineParameter(
     name="ru_compute_id",
     description="Component ID for compute node connected to RU",
     typ=portal.ParameterType.STRING,
-    defaultValue="pc03-meb",
-    legalValues=node_types
+    defaultValue="pc19-meb",
 )
 
 indoor_ota_x310s = [
