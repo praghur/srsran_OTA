@@ -238,6 +238,14 @@ pc.defineParameter(
     advanced=True
 )
 
+pc.defineParameter(
+    name="ru_compute_id",
+    description="Component ID for compute node connected to RU",
+    typ=portal.ParameterType.STRING,
+    defaultValue="pc03-meb",
+    legalValues=node_types
+)
+
 indoor_ota_x310s = [
     ("ota-x310-1",
      "USRP X310 #1"),
@@ -329,6 +337,16 @@ cn_link.addInterface(node_cn_if)
 cmd = "{} '{}'".format(SRSRAN_DEPLOY_SCRIPT, srsran_hash)
 nuc_nodeb.addService(rspec.Execute(shell="bash", command=cmd))
 nuc_nodeb.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
+
+ru_nodeb = request.RawPC("ru-gnb-comp")
+ru_nodeb.component_manager_id = COMP_MANAGER_ID
+ru_nodeb.component_id = params.ru_compute_id
+ru_nodeb.image = UBUNTU_IMG
+ru_node_cn_if = ru_nodeb.addInterface("ru-nodeb-cn-if")
+ru_node_cn_if.addAddress(rspec.IPv4Address("192.168.1.4", "255.255.255.0"))
+cn_link.addInterface(ru_node_cn_if)
+cmd = "{} '{}'".format(SRSRAN_DEPLOY_SCRIPT, srsran_hash)
+ru_nodeb.addService(rspec.Execute(shell="bash", command=cmd))
 
 # require the rest of the indoor OTA nucs for now
 for b210_node in params.b210_nodes:
