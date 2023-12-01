@@ -57,7 +57,7 @@ On `cn`:
 
 After your experiment becomes ready, the Open5GS core network services will be
 running as system services. You can check their status with `systemctl status
-open5gs-*`.`
+open5gs-*`.
 
 If you'd like to monitor traffic between the various network
 functions and the gNodeB, start tshark in a session:
@@ -65,7 +65,7 @@ functions and the gNodeB, start tshark in a session:
 ```
 NGIF=`ip r | awk '/192\.168\.1\.0/{print $3}'`
 sudo tshark -i $NGIF \
-  -f "not arp and not port 53 and not host archive.ubuntu.com and not host security.ubuntu.com"
+  -f "not arp and not llc and not port 53 and not host archive.ubuntu.com and not host security.ubuntu.com"
 ```
 
 Note: you should stop tshark before you generate heavy traffic across the
