@@ -151,7 +151,7 @@ ETC_PATH = "/local/repository/etc"
 UBUNTU_IMG = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD"
 COTS_UE_IMG = "urn:publicid:IDN+emulab.net+image+PowderTeam:cots-jammy-image"
 COMP_MANAGER_ID = "urn:publicid:IDN+emulab.net+authority+cm"
-DEFAULT_SRSRAN_HASH = "55c984b55736d0dd2d2ee328f1ae8d9de97e3e19"
+DEFAULT_SRSRAN_HASH = "0b2702cca094a2a1d8f2d25d482172d2aa00d454"
 OPEN5GS_DEPLOY_SCRIPT = os.path.join(BIN_PATH, "deploy-open5gs.sh")
 SRSRAN_DEPLOY_SCRIPT = os.path.join(BIN_PATH, "deploy-srsran.sh")
 
