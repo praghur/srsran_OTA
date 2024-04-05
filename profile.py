@@ -250,25 +250,40 @@ indoor_ota_x310s = [
 ]
 pc.defineParameter(
     name="x310_radio",
-    description="X310 Radio (for OAI gNodeB)",
+    description="X310 Radio (for spectrum observation with GnuRadio)",
     typ=portal.ParameterType.STRING,
     defaultValue=indoor_ota_x310s[0],
     legalValues=indoor_ota_x310s
 )
 
 indoor_ota_nucs = [
-    ("ota-nuc%d" % (i,), "Indoor OTA nuc#%d with B210 and COTS UE" % (i,)) for i in range(2, 5) ]
+    ("ota-nuc%d" % (i,), "Indoor OTA nuc#%d with B210 and COTS UE" % (i,)) for i in range(1, 5) ]
+
 pc.defineStructParameter(
-    name="b210_nodes",
-    description="Indoor OTA NUC with B210 and COTS UE",
-    defaultValue=[ { "node_id": "ota-nuc2" } ],
+    name="b210_node_gnb",
+    description="Indoor OTA NUC with B210 and srsRAN gNodeB",
+    typ=portal.ParameterType.STRING,
+    defaultValue=indoor_ota_nucs[0],
+    legalValues=indoor_ota_nucs
+)
+
+pc.defineStructParameter(
+    name="ue_nodes",
+    description="Indoor OTA NUC with COTS UE (can't be the same as gNodeB node!)",
+    defaultValue=[{ "node_id": "ota-nuc2" }],
     multiValue=True,
     min=1,
-    max=len(indoor_ota_nucs),
+    max=3,
     members=[
         portal.Parameter(
-            "node_id", "Indoor OTA NUC", portal.ParameterType.STRING,
-            indoor_ota_nucs[0], indoor_ota_nucs)])
+            name="node_id",
+            description="Indoor OTA NUC",
+            typ=portal.ParameterType.STRING,
+            defaultValue=indoor_ota_nucs[0],
+            legalValues=indoor_ota_nucs
+        )
+    ]
+)
 
 portal.context.defineStructParameter(
     "freq_ranges", "Frequency Ranges To Transmit In",
@@ -319,9 +334,9 @@ if params.srsran_commit_hash:
 else:
     srsran_hash = DEFAULT_SRSRAN_HASH
 
-nuc_nodeb = request.RawPC("ota-nuc1-gnb-comp")
+nuc_nodeb = request.RawPC("{}-gnb-comp".format(params.b210_node_gnb.node_id))
 nuc_nodeb.component_manager_id = COMP_MANAGER_ID
-nuc_nodeb.component_id = "ota-nuc1"
+nuc_nodeb.component_id = params.b210_node_gnb.node_id
 nuc_nodeb.image = COTS_UE_IMG
 node_cn_if = nuc_nodeb.addInterface("nuc-nodeb-cn-if")
 node_cn_if.addAddress(rspec.IPv4Address("192.168.1.3", "255.255.255.0"))
@@ -331,8 +346,8 @@ nuc_nodeb.addService(rspec.Execute(shell="bash", command=cmd))
 nuc_nodeb.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
 
 # require the rest of the indoor OTA nucs for now
-for b210_node in params.b210_nodes:
-    b210_nuc_pair(b210_node.node_id)
+for ue_node in params.ue_nodes:
+    b210_nuc_pair(ue_node.node_id)
 
 for frange in params.freq_ranges:
     request.requestSpectrum(frange.freq_min, frange.freq_max, 0)
