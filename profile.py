@@ -41,7 +41,7 @@ your experiment:
 
 - A d430 compute node to host the core network
 - A d740 compute node for the spectrum observation node
-- `ota-nuc1` and at least one of the other indoor OTA NUCs (e.g. `ota-nuc2`)
+- At least two indoor OTA NUCs: one for the gNodeB and up to three more for COTS UEs
 
 """
 
