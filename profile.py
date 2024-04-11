@@ -287,7 +287,7 @@ pc.defineStructParameter(
     ]
 )
 
-portal.context.defineStructParameter(
+pc.defineStructParameter(
     "freq_ranges", "Frequency Ranges To Transmit In",
     defaultValue=[{"freq_min": 3550.0, "freq_max": 3600.0}],
     multiValue=True,
@@ -347,7 +347,6 @@ cmd = "{} '{}'".format(SRSRAN_DEPLOY_SCRIPT, srsran_hash)
 nuc_nodeb.addService(rspec.Execute(shell="bash", command=cmd))
 nuc_nodeb.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
 
-# require the rest of the indoor OTA nucs for now
 for ue_node in params.ue_nodes:
     b210_nuc_pair(ue_node.node_id)
 
