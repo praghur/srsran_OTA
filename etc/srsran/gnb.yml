@@ -3,7 +3,7 @@
 # as the RF frontend using split 8. Note in this example an external clock source is not used, so the sync 
 # is not defined and the default is used. 
 
-gnb_id: 10GNBID
+gnb_id: 0x19B
 
 amf:
   addr: 192.168.1.1
