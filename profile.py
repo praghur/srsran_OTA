@@ -83,7 +83,7 @@ In a session on `ota-nuc1-gnb-comp` do the following to start the srsRAN gNodeB:
 
 ```
 sudo /var/tmp/srsRAN_Project/build/apps/gnb/gnb \
-  -c /local/repository/etc/srsran/gnb_rf_b200_tdd_n78_20mhz.yml \
+  -c /local/repository/etc/srsran/gnb.yml \
   -c /local/repository/etc/srsran/slicing.yml \
   -c /var/tmp/srsRAN_Project/configs/qam256.yml
 
