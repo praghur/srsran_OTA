@@ -108,6 +108,10 @@ In another session on the same node, bring the UE online:
 sudo sh -c "chat -t 1 -sv '' AT OK 'AT+CFUN=1' OK < /dev/ttyUSB2 > /dev/ttyUSB2"
 ```
 
+#In case I want to turn modem on
+sudo minicom -D /dev/ttyUSB2
+AT+CFUN=1
+
 The UE should attach to the network and pick up an IP address on the wwan
 interface associated with the module. You'll see the wwan interface name and the
 IP address in the stdout of the quectel-CM process.
