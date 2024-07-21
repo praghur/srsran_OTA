@@ -31,10 +31,6 @@ cell_cfg:
   ssb:
     ssb_period: 20
 
-slicing:
-  - sst: 2
-    sd: 0x000001
-
 log:
   all_level: info
   rrc_level: debug
