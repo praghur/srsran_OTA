@@ -1,0 +1,40 @@
+gnb_id: 411
+gnb_id_bit_length: 32
+
+amf:
+  addr: 192.168.1.1
+  bind_addr: 192.168.1.2
+
+ru_sdr:
+  device_driver: uhd
+  device_args: type=x300
+  tx_gain: 30
+  rx_gain: 30
+  srate: 92.16
+  lo_offset: 45
+  clock: internal
+  sync: internal
+  time_alignment_calibration: 0
+
+cell_cfg:
+  dl_arfcn: 632628
+  band: 78
+  channel_bandwidth_MHz: 20
+  common_scs: 30
+  nof_antennas_dl: 1
+  nof_antennas_ul: 1
+  plmn: "99999"
+  tac: 1
+  pci: 1
+  pdsch:
+    mcs_table: qam256
+  ssb:
+    ssb_period: 20
+
+slicing:
+  - sst: 2
+    sd: 0x000001
+
+log:
+  all_level: info
+  rrc_level: debug
