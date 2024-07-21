@@ -27,6 +27,10 @@ cell_cfg:
   tac: 1                                                          # Tracking area code (needs to match the core configuration).
   pci: 1                                                          # Physical cell ID.
 
+slicing:
+  - sst: 2
+    sd: 1
+    
 log:
   filename: /tmp/gnb.log                                          # Path of the log file.
   all_level: info                                                 # Logging level applied to all layers. 
