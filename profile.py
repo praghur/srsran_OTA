@@ -82,10 +82,7 @@ sudo tail -f /var/log/open5gs/amf.log
 In a session on `ota-nuc1-gnb-comp` do the following to start the srsRAN gNodeB:
 
 ```
-sudo /var/tmp/srsRAN_Project/build/apps/gnb/gnb \
-  -c /local/repository/etc/srsran/gnb.yml \
-  -c /local/repository/etc/srsran/slicing.yml \
-  -c /var/tmp/srsRAN_Project/configs/qam256.yml
+sudo /var/tmp/srsRAN_Project/build/apps/gnb/gnb  -c /local/repository/etc/srsran/gnb_x310.yml -c /var/tmp/srsRAN_Project/configs/qam256.yml
 
 ```
 
@@ -210,7 +207,7 @@ pc = portal.Context()
 
 node_types = [
     ("d430", "Emulab, d430"),
-    ("d740", "Emulab, d740"),
+#    ("d740", "Emulab, d740"),
 ]
 pc.defineParameter(
     name="sdr_nodetype",
@@ -336,24 +333,24 @@ cn_node.addService(rspec.Execute(shell="bash", command=OPEN5GS_DEPLOY_SCRIPT))
 x310_node_pair(0, params.x310_radio)
 
 # using nuc1 as a gNodeB for now
-if params.srsran_commit_hash:
-    srsran_hash = params.srsran_commit_hash
-else:
-    srsran_hash = DEFAULT_SRSRAN_HASH
+#if params.srsran_commit_hash:
+#    srsran_hash = params.srsran_commit_hash
+#else:
+#    srsran_hash = DEFAULT_SRSRAN_HASH
 
-nuc_nodeb = request.RawPC("{}-gnb-comp".format(params.b210_node_gnb))
-nuc_nodeb.component_manager_id = COMP_MANAGER_ID
-nuc_nodeb.component_id = params.b210_node_gnb
-nuc_nodeb.image = COTS_UE_IMG
-node_cn_if = nuc_nodeb.addInterface("nuc-nodeb-cn-if")
-node_cn_if.addAddress(rspec.IPv4Address("192.168.1.3", "255.255.255.0"))
-cn_link.addInterface(node_cn_if)
-cmd = "{} '{}'".format(SRSRAN_DEPLOY_SCRIPT, srsran_hash)
-nuc_nodeb.addService(rspec.Execute(shell="bash", command=cmd))
-nuc_nodeb.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
+#nuc_nodeb = request.RawPC("{}-gnb-comp".format(params.b210_node_gnb))
+#nuc_nodeb.component_manager_id = COMP_MANAGER_ID
+#nuc_nodeb.component_id = params.b210_node_gnb
+#nuc_nodeb.image = COTS_UE_IMG
+#node_cn_if = nuc_nodeb.addInterface("nuc-nodeb-cn-if")
+#node_cn_if.addAddress(rspec.IPv4Address("192.168.1.3", "255.255.255.0"))
+#cn_link.addInterface(node_cn_if)
+#cmd = "{} '{}'".format(SRSRAN_DEPLOY_SCRIPT, srsran_hash)
+#nuc_nodeb.addService(rspec.Execute(shell="bash", command=cmd))
+#nuc_nodeb.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
 
-for ue_node in params.ue_nodes:
-    b210_nuc_pair(ue_node.node_id)
+#for ue_node in params.ue_nodes:
+#    b210_nuc_pair(ue_node.node_id)
 
 for frange in params.freq_ranges:
     request.requestSpectrum(frange.freq_min, frange.freq_max, 0)
