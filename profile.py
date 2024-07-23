@@ -213,7 +213,7 @@ pc.defineParameter(
     name="sdr_nodetype",
     description="Type of compute node paired with the SDRs",
     typ=portal.ParameterType.STRING,
-    defaultValue=node_types[1],
+    defaultValue=node_types[0],
     legalValues=node_types
 )
 
