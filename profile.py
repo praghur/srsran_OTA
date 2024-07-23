@@ -263,13 +263,13 @@ indoor_ota_nucs = [
     ("ota-nuc{}".format(i), "Indoor OTA nuc{} with B210 and COTS UE".format(i)) for i in range(1, 5)
 ]
 
-#pc.defineParameter(
-#    name="b210_node_gnb",
-#    description="Indoor OTA NUC with B210 and srsRAN gNodeB",
-#    typ=portal.ParameterType.STRING,
-#    defaultValue=indoor_ota_nucs[0],
-#    legalValues=indoor_ota_nucs
-#)
+pc.defineParameter(
+    name="b210_node_gnb",
+    description="Indoor OTA NUC with B210 and srsRAN gNodeB",
+    typ=portal.ParameterType.STRING,
+    defaultValue=indoor_ota_nucs[0],
+    legalValues=indoor_ota_nucs
+)
 
 pc.defineStructParameter(
     name="ue_nodes",
@@ -349,8 +349,8 @@ x310_node_pair(0, params.x310_radio)
 #nuc_nodeb.addService(rspec.Execute(shell="bash", command=cmd))
 #nuc_nodeb.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
 
-#for ue_node in params.ue_nodes:
-#    b210_nuc_pair(ue_node.node_id)
+for ue_node in params.ue_nodes:
+    b210_nuc_pair(ue_node.node_id)
 
 for frange in params.freq_ranges:
     request.requestSpectrum(frange.freq_min, frange.freq_max, 0)
