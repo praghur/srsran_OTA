@@ -225,22 +225,6 @@ pc.defineParameter(
     legalValues=node_types
 )
 
-pc.defineParameter(
-    name="sdr_compute_image",
-    description="Image to use for compute connected to SDRs",
-    typ=portal.ParameterType.STRING,
-    defaultValue="",
-    advanced=True
-)
-
-pc.defineParameter(
-    name="srsran_commit_hash",
-    description="Commit hash for srsRAN",
-    typ=portal.ParameterType.STRING,
-    defaultValue="",
-    advanced=True
-)
-
 indoor_ota_x310s = [
     ("ota-x310-1",
      "USRP X310 #1"),
