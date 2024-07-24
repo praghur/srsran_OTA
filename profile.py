@@ -257,7 +257,7 @@ indoor_ota_nucs = [
 
 pc.defineStructParameter(
     name="ue_nodes",
-    description="Indoor OTA NUC with COTS UE (can't be the same as gNodeB node!)",
+    description="Indoor OTA NUC with COTS UE",
     defaultValue=[{ "node_id": "ota-nuc2" }],
     multiValue=True,
     min=1,
