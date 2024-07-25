@@ -157,7 +157,11 @@ DEFAULT_SRSRAN_HASH = "4cf7513e9fe988449aadedce3278063de761a4ac"
 OPEN5GS_DEPLOY_SCRIPT = os.path.join(BIN_PATH, "deploy-open5gs.sh")
 SRSRAN_DEPLOY_SCRIPT = os.path.join(BIN_PATH, "deploy-srsran.sh")
 
-
+class GLOBALS(object):
+    UBUNTU_1804_IMG = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD"
+    SRSLTE_IMG = "urn:publicid:IDN+emulab.net+image+PowderProfiles:U18LL-SRSLTE:2"
+    HWTYPE = "d430"
+  
 def x310_node_pair(idx, x310_radio):
     node = request.RawPC("{}-gnuradio-comp".format(x310_radio))
     node.component_manager_id = COMP_MANAGER_ID
@@ -320,7 +324,7 @@ request = pc.makeRequestRSpec()
 role = "cn"
 cn_node = request.RawPC("cn5g")
 cn_node.component_manager_id = COMP_MANAGER_ID
-cn_node.hardware_type = params.sdr_nodetype
+cn_node.hardware_type = GLOBALS.HWTYPE
 cn_node.disk_image = UBUNTU_IMG
 cn_if = cn_node.addInterface("cn-if")
 cn_if.addAddress(rspec.IPv4Address("192.168.1.1", "255.255.255.0"))
