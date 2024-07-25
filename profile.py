@@ -319,7 +319,7 @@ request = pc.makeRequestRSpec()
 role = "cn"
 cn_node = request.RawPC("cn5g")
 cn_node.component_manager_id = COMP_MANAGER_ID
-cn_node.hardware_type = param.cn_nodetype
+cn_node.hardware_type = params.cn_nodetype
 cn_node.disk_image = UBUNTU_IMG
 cn_if = cn_node.addInterface("cn-if")
 cn_if.addAddress(rspec.IPv4Address("192.168.1.1", "255.255.255.0"))
