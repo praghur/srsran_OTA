@@ -157,8 +157,8 @@ DEFAULT_SRSRAN_HASH = "4cf7513e9fe988449aadedce3278063de761a4ac"
 OPEN5GS_DEPLOY_SCRIPT = os.path.join(BIN_PATH, "deploy-open5gs.sh")
 SRSRAN_DEPLOY_SCRIPT = os.path.join(BIN_PATH, "deploy-srsran.sh")
   
-def x310_node_pair(idx, x310_radio):
-    node = request.RawPC("{}-gnuradio-comp".format(x310_radio))
+def x310_node_pair1(idx, x310_radio):
+    node = request.RawPC("{}-gnuradio1-comp".format(x310_radio))
     node.component_manager_id = COMP_MANAGER_ID
     node.hardware_type = params.sdr_nodetype
 
@@ -175,13 +175,50 @@ def x310_node_pair(idx, x310_radio):
     radio_link.bandwidth = 10*1000*1000
     radio_link.addInterface(node_radio_if)
 
-    radio = request.RawPC("{}-gnb-sdr".format(x310_radio))
+    radio = request.RawPC("{}-gnb1-sdr".format(x310_radio))
     radio.component_id = x310_radio
     radio.component_manager_id = COMP_MANAGER_ID
     radio_link.addNode(radio)
 
     nodeb_cn_if = node.addInterface("nodeb-cn-if")
     nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 2), "255.255.255.0"))
+    cn_link.addInterface(nodeb_cn_if)
+
+    if params.srsran_commit_hash:
+        srsran_hash = params.srsran_commit_hash
+    else:
+        srsran_hash = DEFAULT_SRSRAN_HASH
+
+    cmd = "{} '{}'".format(SRSRAN_DEPLOY_SCRIPT, srsran_hash)
+    node.addService(rspec.Execute(shell="bash", command=cmd))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-cpu.sh"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-sdr-iface.sh"))
+
+def x310_node_pair2(idx, x310_radio):
+    node = request.RawPC("{}-gnuradio2-comp".format(x310_radio))
+    node.component_manager_id = COMP_MANAGER_ID
+    node.hardware_type = params.sdr_nodetype
+
+    if params.sdr_compute_image:
+        node.disk_image = params.sdr_compute_image
+    else:
+        node.disk_image = UBUNTU_IMG
+
+    node_radio_if = node.addInterface("usrp_if")
+    node_radio_if.addAddress(rspec.IPv4Address("192.168.40.11",
+                                               "255.255.255.0"))
+
+    radio_link = request.Link("radio-link-{}".format(idx))
+    radio_link.bandwidth = 10*1000*1000
+    radio_link.addInterface(node_radio_if)
+
+    radio = request.RawPC("{}-gnb2-sdr".format(x310_radio))
+    radio.component_id = x310_radio
+    radio.component_manager_id = COMP_MANAGER_ID
+    radio_link.addNode(radio)
+
+    nodeb_cn_if = node.addInterface("nodeb-cn-if")
+    nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 12), "255.255.255.0"))
     cn_link.addInterface(nodeb_cn_if)
 
     if params.srsran_commit_hash:
@@ -329,7 +366,8 @@ cn_link.addInterface(cn_if)
 cn_node.addService(rspec.Execute(shell="bash", command=OPEN5GS_DEPLOY_SCRIPT))
 
 # single x310 for for observation or another gNodeB
-x310_node_pair(0, params.x310_radio)
+x310_node_pair1(0, params.x310_radio)
+x310_node_pair2(1, params.x310_radio)
 
 # using nuc1 as a gNodeB for now
 #if params.srsran_commit_hash:
