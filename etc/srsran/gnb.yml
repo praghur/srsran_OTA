@@ -26,6 +26,10 @@ cell_cfg:
   plmn: "99999"                                                   # PLMN broadcasted by the gNB.
   tac: 1                                                          # Tracking area code (needs to match the core configuration).
   pci: 1                                                          # Physical cell ID.
+    pdsch:
+    mcs_table: qam256
+  ssb:
+    ssb_period: 20
 
 slicing:
   - sst: 2
