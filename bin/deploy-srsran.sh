@@ -25,10 +25,8 @@ do
     echo Failed to update, retrying
 done
 
-sudo add-apt-repository -y ppa:ettusresearch/uhd
-sudo apt-get update
 sudo apt-get install -y libuhd-dev uhd-host
-#sudo uhd_images_downloader
+sudo uhd_images_downloader
 
 sudo apt-get install -y \
   cmake \
@@ -37,15 +35,12 @@ sudo apt-get install -y \
   g++ \
   iperf3 \
   pkg-config \
-  libboost-dev \
   libfftw3-dev \
   libmbedtls-dev \
   libsctp-dev \
   libyaml-cpp-dev \
   libgtest-dev \
-  numactl \
   ppp
-
 
 cd $SRCDIR
 git clone $SRS_PROJECT_REPO
