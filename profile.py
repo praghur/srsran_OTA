@@ -156,11 +156,6 @@ COMP_MANAGER_ID = "urn:publicid:IDN+emulab.net+authority+cm"
 DEFAULT_SRSRAN_HASH = "4cf7513e9fe988449aadedce3278063de761a4ac"
 OPEN5GS_DEPLOY_SCRIPT = os.path.join(BIN_PATH, "deploy-open5gs.sh")
 SRSRAN_DEPLOY_SCRIPT = os.path.join(BIN_PATH, "deploy-srsran.sh")
-
-class GLOBALS(object):
-    UBUNTU_1804_IMG = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD"
-    SRSLTE_IMG = "urn:publicid:IDN+emulab.net+image+PowderProfiles:U18LL-SRSLTE:2"
-    HWTYPE = "d430"
   
 def x310_node_pair(idx, x310_radio):
     node = request.RawPC("{}-gnuradio-comp".format(x310_radio))
@@ -221,13 +216,13 @@ pc.defineParameter(
     legalValues=node_types
 )
 
-#pc.defineParameter(
-#    name="cn_nodetype",
-#    description="Type of compute node to use for CN node (if included)",
-#    typ=portal.ParameterType.STRING,
-#    defaultValue=node_types[0],
-#    legalValues=node_types
-#)
+pc.defineParameter(
+    name="cn_nodetype",
+    description="Type of compute node to use for CN node (if included)",
+    typ=portal.ParameterType.STRING,
+    defaultValue=node_types[0],
+    legalValues=node_types
+)
 
 pc.defineParameter(
     name="sdr_compute_image",
@@ -324,7 +319,7 @@ request = pc.makeRequestRSpec()
 role = "cn"
 cn_node = request.RawPC("cn5g")
 cn_node.component_manager_id = COMP_MANAGER_ID
-cn_node.hardware_type = GLOBALS.HWTYPE
+cn_node.hardware_type = param.cn_nodetype
 cn_node.disk_image = UBUNTU_IMG
 cn_if = cn_node.addInterface("cn-if")
 cn_if.addAddress(rspec.IPv4Address("192.168.1.1", "255.255.255.0"))
