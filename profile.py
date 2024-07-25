@@ -333,8 +333,11 @@ cn_link.setNoBandwidthShaping()
 cn_link.addInterface(cn_if)
 cn_node.addService(rspec.Execute(shell="bash", command=OPEN5GS_DEPLOY_SCRIPT))
 
-# single x310 for for observation or another gNodeB
+# 1st x310 for for observation or another gNodeB
 x310_node_pair(0, params.x310_radio)
+
+# 2nd x310 for for observation or another gNodeB
+x310_node_pair(1, params.x310_radio)
 
 # using nuc1 as a gNodeB for now
 #if params.srsran_commit_hash:
