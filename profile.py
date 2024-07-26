@@ -332,10 +332,10 @@ cn_node.addService(rspec.Execute(shell="bash", command=OPEN5GS_DEPLOY_SCRIPT))
 x310_node_pair(0, params.x310_radio)
 
 # using nuc1 as a gNodeB for now
-#if params.srsran_commit_hash:
-#    srsran_hash = params.srsran_commit_hash
-#else:
-#    srsran_hash = DEFAULT_SRSRAN_HASH
+if params.srsran_commit_hash:
+    srsran_hash = params.srsran_commit_hash
+else:
+    srsran_hash = DEFAULT_SRSRAN_HASH
 
 #nuc_nodeb = request.RawPC("{}-gnb-comp".format(params.b210_node_gnb))
 #nuc_nodeb.component_manager_id = COMP_MANAGER_ID
