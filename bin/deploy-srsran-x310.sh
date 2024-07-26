@@ -31,7 +31,7 @@ rm -rf build
 mkdir build
 sudo apt remove libuhd* gnuradio* uhd-host libgnuradio-* #Click Y here
 sudo add-apt-repository -y ppa:ettusresearch/uhd
-
+sudo apt-get update
 sudo vim /etc/apt/sources.list.d/emulab.list #Delete the line in this file
 sudo apt-get update
 sudo apt-get install -y libuhd-dev uhd-host
