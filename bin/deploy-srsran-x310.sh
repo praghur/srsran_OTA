@@ -36,7 +36,9 @@ sudo vim /etc/apt/sources.list.d/emulab.list #Delete the line in this file
 sudo apt-get update
 sudo apt-get install -y libuhd-dev uhd-host
 sudo apt list --installed | grep uhd #It should not contain uhd4.4.0. It does for some reason
-sudo apt remove libgnuradio-* #Click on tab. It will show uhd4.4.0 and uhd4.7.0. Remove uhd4.4.0
+sudo apt remove libgnuradio-* 
+sudo apt remove libuhd #Click on tab. It will show uhd4.4.0 and uhd4.7.0. Remove uhd4.4.0
+sudo apt remove libuhd4.4.0
 uhd_find_devices
 sudo apt-get install -y \
   cmake \
