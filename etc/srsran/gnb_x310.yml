@@ -26,6 +26,14 @@ cell_cfg:
   plmn: "99999"
   tac: 1
   pci: 1
+    pdsch:
+    mcs_table: qam256
+  ssb:
+    ssb_period: 20
+
+slicing:
+  - sst: 2
+    sd: 0x000001
 
 log:
   all_level: info
