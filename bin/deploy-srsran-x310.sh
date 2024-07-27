@@ -29,7 +29,9 @@ done
 cd /var/tmp/srsRAN_Project
 rm -rf build
 mkdir build
+sudo apt list --installed | grep uhd
 sudo apt remove libuhd* gnuradio* uhd-host libgnuradio-* #Click Y here
+sudo apt list --installed | grep uhd #Should be blank at this stage
 sudo add-apt-repository -y ppa:ettusresearch/uhd
 sudo apt-get update
 sudo vim /etc/apt/sources.list.d/emulab.list #Delete the line in this file
