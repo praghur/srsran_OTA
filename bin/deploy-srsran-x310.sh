@@ -64,7 +64,7 @@ sudo uhd_images_downloader
 cd $SRCDIR
 git clone $SRS_PROJECT_REPO
 cd srsRAN_Project
-git checkout $COMMIT_HASH
+git checkout 4cf7513e9fe988449aadedce3278063de761a4ac
 # git apply $ETCDIR/srsran/srsran.patch
 mkdir build
 cd build
