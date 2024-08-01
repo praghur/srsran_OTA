@@ -26,7 +26,7 @@ cell_cfg:
   plmn: "99999"
   tac: 1
   pci: 1
-    pdsch:
+  pdsch:
     mcs_table: qam256
   ssb:
     ssb_period: 20
