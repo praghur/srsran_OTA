@@ -66,7 +66,6 @@ git clone $SRS_PROJECT_REPO
 cd srsRAN_Project
 git checkout 4cf7513e9fe988449aadedce3278063de761a4ac
 # git apply $ETCDIR/srsran/srsran.patch
-mkdir build
 cd build
 cmake ../
 make -j $(nproc)
