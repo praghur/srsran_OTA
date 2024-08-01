@@ -51,8 +51,8 @@ sudo systemctl restart open5gs-nssfd
 sudo systemctl restart open5gs-bsfd
 sudo systemctl restart open5gs-udrd
 
-cd /local/repository/bin
-chmod +x restart_core
+#cd /local/repository/bin
+#chmod +x restart_core
 
 cd $SRCDIR
 wget https://raw.githubusercontent.com/open5gs/open5gs/main/misc/db/open5gs-dbctl
