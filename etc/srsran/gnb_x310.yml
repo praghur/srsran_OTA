@@ -26,10 +26,28 @@ cell_cfg:
   plmn: "99999"
   tac: 1
   pci: 1
-pdsch:
+  pdsch:
     mcs_table: qam256
   ssb:
     ssb_period: 20
+  pusch:    #This is copied from low_latency.yml file in srsRAN_Project/config directory
+    min_k2: 2
+  tdd_ul_dl_cfg:
+    dl_ul_tx_period: 4
+    nof_dl_slots: 2
+    nof_dl_symbols: 10
+    nof_ul_slots: 1
+    nof_ul_symbols: 0
+  pucch:
+    sr_period_ms: 2
+    min_k1: 2
+  mac_cell_group:
+    bsr_cfg:
+      periodic_bsr_timer: 1
+
+expert_phy:
+  max_request_headroom_slots: 0
+  max_proc_delay: 1
 
 slicing:
   - sst: 1
