@@ -59,7 +59,7 @@ wget https://raw.githubusercontent.com/open5gs/open5gs/main/misc/db/open5gs-dbct
 chmod +x open5gs-dbctl
   
 for imsi in {000..003}; do
-   ./open5gs-dbctl add_ue_with_slice 999990000000$imsi 00112233445566778899aabbccddeeff 0ed47545168eafe2c39c075829a7b61f internet 2 000001 # IMSI,K,OPC
+   ./open5gs-dbctl add_ue_with_slice 999990000000$imsi 00112233445566778899aabbccddeeff 0ed47545168eafe2c39c075829a7b61f internet 1 000001 # IMSI,K,OPC
    ./open5gs-dbctl type 999990000000$imsi 1  # APN type IPV4
 done
 
