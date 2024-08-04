@@ -84,7 +84,11 @@ sudo journalctl -u open5gs-amfd -u open5gs-smfd -f --output cat
 In a session on `ota-nuc1-gnb-comp` do the following to start the srsRAN gNodeB:
 
 ```
-sudo /var/tmp/srsRAN_Project/build/apps/gnb/gnb -c /local/repository/etc/srsran/gnb.yml 
+sudo /var/tmp/srsRAN_Project/build/apps/gnb/gnb -c /local/repository/etc/srsran/gnb_x310_1.yml 
+OR
+sudo /var/tmp/srsRAN_Project/build/apps/gnb/gnb -c /local/repository/etc/srsran/gnb_x310_2.yml 
+OR
+sudo /var/tmp/srsRAN_Project/build/apps/gnb/gnb -c /local/repository/etc/srsran/gnb_x310_3.yml 
 ```
 
 Have a look at these files to see how the gNodeB is configured.
