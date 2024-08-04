@@ -275,14 +275,30 @@ def x310_node_pair3(idx, x310_radio):
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-cpu.sh"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-sdr-iface.sh"))
   
-def b210_nuc_pair(b210_node):
-    node = request.RawPC("{}-cots-ue".format(b210_node))
+def b210_nuc_pair1(b210_node):
+    node = request.RawPC("{}-cots-ue1".format(b210_node))
     node.component_manager_id = COMP_MANAGER_ID
     node.component_id = b210_node
     node.disk_image = COTS_UE_IMG
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
 
+def b210_nuc_pair2(b210_node):
+    node = request.RawPC("{}-cots-ue2".format(b210_node))
+    node.component_manager_id = COMP_MANAGER_ID
+    node.component_id = b210_node
+    node.disk_image = COTS_UE_IMG
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
+
+def b210_nuc_pair3(b210_node):
+    node = request.RawPC("{}-cots-ue3".format(b210_node))
+    node.component_manager_id = COMP_MANAGER_ID
+    node.component_id = b210_node
+    node.disk_image = COTS_UE_IMG
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
+  
 pc = portal.Context()
 
 node_types = [
@@ -343,13 +359,13 @@ indoor_ota_nucs = [
     ("ota-nuc{}".format(i), "Indoor OTA nuc{} with B210 and COTS UE".format(i)) for i in range(1, 5)
 ]
 
-pc.defineParameter(
-    name="b210_node_gnb",
-    description="Indoor OTA NUC with B210 and srsRAN gNodeB",
-    typ=portal.ParameterType.STRING,
-    defaultValue=indoor_ota_nucs[0],
-    legalValues=indoor_ota_nucs
-)
+#pc.defineParameter(
+#    name="b210_node_gnb",
+#    description="Indoor OTA NUC with B210 and srsRAN gNodeB",
+#    typ=portal.ParameterType.STRING,
+#    defaultValue=indoor_ota_nucs[0],
+#    legalValues=indoor_ota_nucs
+#)
 
 pc.defineStructParameter(
     name="ue_nodes",
@@ -432,7 +448,9 @@ x310_node_pair3(2, params.x310_radio)
 #nuc_nodeb.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
 
 for ue_node in params.ue_nodes:
-    b210_nuc_pair(ue_node.node_id)
+    b210_nuc_pair1(ue_node.node_id)
+    b210_nuc_pair2(ue_node.node_id)
+    b210_nuc_pair3(ue_node.node_id)
 
 for frange in params.freq_ranges:
     request.requestSpectrum(frange.freq_min, frange.freq_max, 0)
