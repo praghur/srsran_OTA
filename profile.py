@@ -385,10 +385,10 @@ indoor_ota_nucs = [
 
 pc.defineStructParameter(
     name="ue_nodes",
-    description="Indoor OTA NUC with COTS UE (can't be the same as gNodeB node!)",
+    description="Indoor OTA NUC with COTS UE",
     defaultValue=[{ "node_id": "ota-nuc2" }],
     multiValue=True,
-    min=1,
+    min=3,
     max=3,
     members=[
         portal.Parameter(
@@ -400,6 +400,30 @@ pc.defineStructParameter(
         )
     ]
 )
+
+#pc.defineParameter(
+#    name="ue1",
+#    description="Indoor OTA NUC as ue1",
+#    typ=portal.ParameterType.STRING,
+#    defaultValue=indoor_ota_x310s[0],
+#    legalValues=indoor_ota_x310s
+#)
+
+#pc.defineParameter(
+#    name="ue2",
+#    description="Indoor OTA NUC as ue2",
+#    typ=portal.ParameterType.STRING,
+#    defaultValue=indoor_ota_x310s[1],
+#    legalValues=indoor_ota_x310s
+#)
+
+#pc.defineParameter(
+#    name="ue3",
+#    description="Indoor OTA NUC as ue3",
+#    typ=portal.ParameterType.STRING,
+#    defaultValue=indoor_ota_x310s[2],
+#    legalValues=indoor_ota_x310s
+#)
 
 pc.defineStructParameter(
     "freq_ranges", "Frequency Ranges To Transmit In",
