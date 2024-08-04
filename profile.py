@@ -77,16 +77,14 @@ see when the UE attaches to the network.
 
 ```
 sudo tail -f /var/log/open5gs/amf.log
+OR
+sudo journalctl -u open5gs-amfd -u open5gs-smfd -f --output cat
 ```
 
 In a session on `ota-nuc1-gnb-comp` do the following to start the srsRAN gNodeB:
 
 ```
-sudo /var/tmp/srsRAN_Project/build/apps/gnb/gnb \
-  -c /local/repository/etc/srsran/gnb.yml \
-  -c /local/repository/etc/srsran/slicing.yml \
-  -c /var/tmp/srsRAN_Project/configs/qam256.yml
-
+sudo /var/tmp/srsRAN_Project/build/apps/gnb/gnb -c /local/repository/etc/srsran/gnb.yml 
 ```
 
 Have a look at these files to see how the gNodeB is configured.
@@ -100,17 +98,22 @@ with the 5G UE):
 ```
 sudo quectel-CM -s internet -4
 ```
+In other UE sessions, turn them off to ensure UE connects to a particular gNB
+```
+sudo sh -c "chat -t 1 -sv '' AT OK 'AT+CFUN=4' OK < /dev/ttyUSB2 > /dev/ttyUSB2"
+```
 
 In another session on the same node, bring the UE online:
 
 ```
-# turn modem on
 sudo sh -c "chat -t 1 -sv '' AT OK 'AT+CFUN=1' OK < /dev/ttyUSB2 > /dev/ttyUSB2"
 ```
 
-#In case I want to turn modem on
+In case I want to turn modem on
+```
 sudo minicom -D /dev/ttyUSB2
 AT+CFUN=1
+```
 
 The UE should attach to the network and pick up an IP address on the wwan
 interface associated with the module. You'll see the wwan interface name and the
