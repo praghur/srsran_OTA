@@ -294,7 +294,7 @@ pc.defineParameter(
     description="Type of compute node paired with the SDRs",
     typ=portal.ParameterType.STRING,
     defaultValue=node_types[1],
-    legalValues=node_types
+    legalValues=node_types[1]
 )
 
 pc.defineParameter(
@@ -371,7 +371,7 @@ pc.defineStructParameter(
 
 pc.defineStructParameter(
     "freq_ranges", "Frequency Ranges To Transmit In",
-    defaultValue=[{"freq_min": 3550.0, "freq_max": 3600.0}],
+    defaultValue=[{"freq_min": 3460.0, "freq_max": 3480.0}],
     multiValue=True,
     min=0,
     multiValueTitle="Frequency ranges to be used for transmission.",
@@ -380,14 +380,14 @@ pc.defineStructParameter(
             "freq_min",
             "Frequency Range Min",
             portal.ParameterType.BANDWIDTH,
-            3550.0,
+            3460.0,
             longDescription="Values are rounded to the nearest kilohertz."
         ),
         portal.Parameter(
             "freq_max",
             "Frequency Range Max",
             portal.ParameterType.BANDWIDTH,
-            3600.0,
+            3480.0,
             longDescription="Values are rounded to the nearest kilohertz."
         ),
     ]
@@ -410,24 +410,26 @@ cn_link.addInterface(cn_if)
 cn_node.addService(rspec.Execute(shell="bash", command=OPEN5GS_DEPLOY_SCRIPT))
 
 # single x310 for for observation or another gNodeB
-x310_node_pair(0, params.x310_radio)
+x310_node_pair1(0, params.x310_radio)
+x310_node_pair2(1, params.x310_radio)
+x310_node_pair3(2, params.x310_radio)
 
 # using nuc1 as a gNodeB for now
-if params.srsran_commit_hash:
-    srsran_hash = params.srsran_commit_hash
-else:
-    srsran_hash = DEFAULT_SRSRAN_HASH
+#if params.srsran_commit_hash:
+#    srsran_hash = params.srsran_commit_hash
+#else:
+#    srsran_hash = DEFAULT_SRSRAN_HASH
 
-nuc_nodeb = request.RawPC("{}-gnb-comp".format(params.b210_node_gnb))
-nuc_nodeb.component_manager_id = COMP_MANAGER_ID
-nuc_nodeb.component_id = params.b210_node_gnb
-nuc_nodeb.image = COTS_UE_IMG
-node_cn_if = nuc_nodeb.addInterface("nuc-nodeb-cn-if")
-node_cn_if.addAddress(rspec.IPv4Address("192.168.1.3", "255.255.255.0"))
-cn_link.addInterface(node_cn_if)
-cmd = "{} '{}'".format(SRSRAN_DEPLOY_SCRIPT, srsran_hash)
-nuc_nodeb.addService(rspec.Execute(shell="bash", command=cmd))
-nuc_nodeb.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
+#nuc_nodeb = request.RawPC("{}-gnb-comp".format(params.b210_node_gnb))
+#nuc_nodeb.component_manager_id = COMP_MANAGER_ID
+#nuc_nodeb.component_id = params.b210_node_gnb
+#nuc_nodeb.image = COTS_UE_IMG
+#node_cn_if = nuc_nodeb.addInterface("nuc-nodeb-cn-if")
+#node_cn_if.addAddress(rspec.IPv4Address("192.168.1.3", "255.255.255.0"))
+#cn_link.addInterface(node_cn_if)
+#cmd = "{} '{}'".format(SRSRAN_DEPLOY_SCRIPT, srsran_hash)
+#nuc_nodeb.addService(rspec.Execute(shell="bash", command=cmd))
+#nuc_nodeb.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
 
 for ue_node in params.ue_nodes:
     b210_nuc_pair(ue_node.node_id)
