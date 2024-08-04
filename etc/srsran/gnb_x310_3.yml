@@ -18,7 +18,8 @@ ru_sdr:
   time_alignment_calibration: 0
 
 cell_cfg:
-  dl_arfcn: 632628
+  #dl_arfcn: 632628
+  dl_arfcn: 635333
   band: 78
   channel_bandwidth_MHz: 20
   common_scs: 30
