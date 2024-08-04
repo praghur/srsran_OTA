@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import os 
-
+ 
 import geni.portal as portal
 import geni.rspec.pg as rspec
 import geni.rspec.igext as IG
