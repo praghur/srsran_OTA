@@ -504,6 +504,7 @@ for ue_node in params.ue_nodes:
     b210_nuc_pair1(ue_node.node_id)
     b210_nuc_pair2(ue_node.node_id)
     b210_nuc_pair3(ue_node.node_id)
+    b210_nuc_pair3(ue_node.node_id)
 
 for frange in params.freq_ranges:
     request.requestSpectrum(frange.freq_min, frange.freq_max, 0)
