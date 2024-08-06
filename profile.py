@@ -192,7 +192,7 @@ def x310_node_pair1(idx, x310_radio1):
     radio_link.addNode(radio)
 
     nodeb_cn_if = node.addInterface("nodeb-cn-if")
-    nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 12), "255.255.255.0"))
+    nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 10), "255.255.255.0"))
     cn_link.addInterface(nodeb_cn_if)
 
     if params.srsran_commit_hash:
@@ -229,7 +229,7 @@ def x310_node_pair2(idx, x310_radio2):
     radio_link.addNode(radio)
 
     nodeb_cn_if = node.addInterface("nodeb-cn-if")
-    nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 22), "255.255.255.0"))
+    nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 10), "255.255.255.0"))
     cn_link.addInterface(nodeb_cn_if)
 
     if params.srsran_commit_hash:
@@ -266,7 +266,7 @@ def x310_node_pair3(idx, x310_radio3):
     radio_link.addNode(radio)
 
     nodeb_cn_if = node.addInterface("nodeb-cn-if")
-    nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 32), "255.255.255.0"))
+    nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 10), "255.255.255.0"))
     cn_link.addInterface(nodeb_cn_if)
 
     if params.srsran_commit_hash:
@@ -480,8 +480,8 @@ cn_node.addService(rspec.Execute(shell="bash", command=OPEN5GS_DEPLOY_SCRIPT))
 
 # single x310 for for observation or another gNodeB
 x310_node_pair1(0, params.x310_radio1)
-x310_node_pair2(0, params.x310_radio2)
-x310_node_pair3(0, params.x310_radio3)
+x310_node_pair2(1, params.x310_radio2)
+x310_node_pair3(2, params.x310_radio3)
 
 # using nuc1 as a gNodeB for now
 #if params.srsran_commit_hash:
