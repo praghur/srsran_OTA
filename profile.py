@@ -93,9 +93,9 @@ sudo /var/tmp/srsRAN_Project/build/apps/gnb/gnb -c /local/repository/etc/srsran/
 
 Have a look at these files to see how the gNodeB is configured.
 
-On `ota-nucX-cots-ue`:
+On `ota-nucX--ue`:
 
-After you've started the gNodeB, you can bring the COTS UE online. First, start
+After you've started the gNodeB, you can bring the  UE online. First, start
 the Quectel connection manager (this manages the network interface associated
 with the 5G UE):
 
@@ -302,6 +302,14 @@ def b210_nuc_pair3(b210_node):
     node.disk_image = COTS_UE_IMG
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
+
+def b210_nuc_pair4(b210_node):
+    node = request.RawPC("{}-cots-ue4".format(b210_node))
+    node.component_manager_id = COMP_MANAGER_ID
+    node.component_id = b210_node
+    node.disk_image = COTS_UE_IMG
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
   
 pc = portal.Context()
 
@@ -393,7 +401,7 @@ pc.defineStructParameter(
     defaultValue=[{ "node_id": "ota-nuc2" }],
     multiValue=True,
     min=3,
-    max=3,
+    max=4,
     members=[
         portal.Parameter(
             "node_id",
