@@ -280,7 +280,7 @@ def x310_node_pair3(idx, x310_radio3):
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-sdr-iface.sh"))
   
 def b210_nuc_pair(b210_node):
-    node = request.RawPC("{}-cots-ue1".format(b210_node))
+    node = request.RawPC("{}-cots-ue".format(b210_node))
     node.component_manager_id = COMP_MANAGER_ID
     node.component_id = b210_node
     node.disk_image = COTS_UE_IMG
