@@ -18,7 +18,7 @@ ru_sdr:
 
 cell_cfg:
   #dl_arfcn: 632628
-  dl_arfcn: 631332
+  dl_arfcn: 631334
   band: 78
   channel_bandwidth_MHz: 20
   common_scs: 30
