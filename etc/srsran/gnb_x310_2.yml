@@ -3,7 +3,7 @@ gnb_id_bit_length: 32
 
 amf:
   addr: 192.168.1.1
-  bind_addr: 192.168.1.22
+  bind_addr: 192.168.1.11
 
 ru_sdr:
   device_driver: uhd
@@ -18,7 +18,7 @@ ru_sdr:
 
 cell_cfg:
   #dl_arfcn: 632628
-  dl_arfcn: 631334
+  dl_arfcn: 633334
   band: 78
   channel_bandwidth_MHz: 20
   common_scs: 30
