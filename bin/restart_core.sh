@@ -1,6 +1,4 @@
 set -ex
-chmod +x restart_core
-
 sudo systemctl restart open5gs-mmed
 sudo systemctl restart open5gs-sgwcd
 sudo systemctl restart open5gs-smfd
