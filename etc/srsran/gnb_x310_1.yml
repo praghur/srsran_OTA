@@ -3,7 +3,7 @@ gnb_id_bit_length: 32
 
 amf:
   addr: 192.168.1.1
-  bind_addr: 192.168.1.12
+  bind_addr: 192.168.1.10
 
 ru_sdr:
   device_driver: uhd
