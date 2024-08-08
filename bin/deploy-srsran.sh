@@ -70,3 +70,4 @@ fi
 echo configuring nodeb... done.
 
 touch $SRCDIR/srs-setup-complete
+uhd_find_devices
