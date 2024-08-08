@@ -34,14 +34,14 @@ cell_cfg:
   pusch:    #This is copied from low_latency.yml file in srsRAN_Project/config directory
     min_k2: 2  #Sets the minimum value of K2 (difference in slots between PDCCH and PUSCH). K2: Is the offset between the DL slot where the PDCCH(DCI) for Uplink scheduling is received and the UL Slot where the UL data need to sent on PUSCH.
   tdd_ul_dl_cfg:
-    dl_ul_tx_period: 4
+    dl_ul_tx_period: 4 #Sets the TDD pattern periodicity in slots. The combination of this value and the chosen numerology must lead to a TDD periodicity of 0.5, 0.625, 1, 1.25, 2, 2.5, 3, 4, 5 or 10 milliseconds
     nof_dl_slots: 2
     nof_dl_symbols: 10
     nof_ul_slots: 1
     nof_ul_symbols: 0
   pucch:
     sr_period_ms: 2
-    min_k1: 2
+    min_k1: 2 #Sets the minimum value of K1 (difference in slots between PDSCH and HARQ-ACK). Lower k1 values will reduce latency, but place a stricter requirement on the UE decode latency.
   mac_cell_group:
     bsr_cfg:
       periodic_bsr_timer: 1
