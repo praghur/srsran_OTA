@@ -40,11 +40,11 @@ cell_cfg:
     nof_ul_slots: 1
     nof_ul_symbols: 0
   pucch:
-    sr_period_ms: 2
+    sr_period_ms: 2  #SR is an Uplink Physical Layer message from UE to Network, saying "I have some data to send to you. Would you send me some Grant for me to send the data ?"
     min_k1: 2 #Sets the minimum value of K1 (difference in slots between PDSCH and HARQ-ACK). Lower k1 values will reduce latency, but place a stricter requirement on the UE decode latency.
   mac_cell_group:
-    bsr_cfg:
-      periodic_bsr_timer: 1
+    bsr_cfg:  #Buffer status report configuration parameters
+      periodic_bsr_timer: 1  #Sets the periodic Buffer Status Report Timer value in nof. subframes. 
   slicing:
    - sst: 1
        sd: 0x000001
@@ -58,8 +58,8 @@ cell_cfg:
          max_prb_policy_ratio: 10
 
 expert_phy:
-  max_request_headroom_slots: 0
-  max_proc_delay: 1
+  max_request_headroom_slots: 0 #PHR is a type of MAC CE(MAC Control Element) that report the headroom between the current UE Tx power (estimated power) and the nominal power. eNodeB (Network) use this report value to estimate how much uplink bandwidth a UE can use for a specific subframe. Since the more resource block the UE is using, the higher UE Tx power gets, but the UE Tx power should not exceed the max power defined in the specification. So UE cannot use much resource block (bandwidth) if it does not have enough power headroom.
+  max_proc_delay: 1  #Sets the maximum allowed DL processing delay in slots
 
 slicing:
   - sst: 1
