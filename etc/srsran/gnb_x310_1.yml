@@ -32,7 +32,7 @@ cell_cfg:
   ssb:
     ssb_period: 20  #Period of SSB scheduling in milliseconds
   pusch:    #This is copied from low_latency.yml file in srsRAN_Project/config directory
-    min_k2: 2  #Sets the minimum value of K2 (difference in slots between PDCCH and PUSCH).
+    min_k2: 2  #Sets the minimum value of K2 (difference in slots between PDCCH and PUSCH). K2: Is the offset between the DL slot where the PDCCH(DCI) for Uplink scheduling is received and the UL Slot where the UL data need to sent on PUSCH.
   tdd_ul_dl_cfg:
     dl_ul_tx_period: 4
     nof_dl_slots: 2
