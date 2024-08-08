@@ -57,10 +57,6 @@ expert_phy:
   max_request_headroom_slots: 0
   max_proc_delay: 1
 
-slicing:
-  - sst: 1
-    sd: 0x000001
-
 log:
   all_level: info
   rrc_level: debug
