@@ -55,10 +55,6 @@ expert_phy:
   max_request_headroom_slots: 0 #PHR is a type of MAC CE(MAC Control Element) that report the headroom between the current UE Tx power (estimated power) and the nominal power. eNodeB (Network) use this report value to estimate how much uplink bandwidth a UE can use for a specific subframe. Since the more resource block the UE is using, the higher UE Tx power gets, but the UE Tx power should not exceed the max power defined in the specification. So UE cannot use much resource block (bandwidth) if it does not have enough power headroom.
   max_proc_delay: 1  #Sets the maximum allowed DL processing delay in slots
 
-slicing:
-  - sst: 1
-    sd: 0x000001
-
 log:
   all_level: info
   rrc_level: debug
