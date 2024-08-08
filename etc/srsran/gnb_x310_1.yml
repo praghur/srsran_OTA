@@ -25,14 +25,14 @@ cell_cfg:
   nof_antennas_dl: 1
   nof_antennas_ul: 1
   plmn: "99999"
-  tac: 1
-  pci: 1
+  tac: 1  #Tracking Area Code
+  pci: 1  #Physical Cell ID
   pdsch:
     mcs_table: qam256
   ssb:
-    ssb_period: 20
+    ssb_period: 20  #Period of SSB scheduling in milliseconds
   pusch:    #This is copied from low_latency.yml file in srsRAN_Project/config directory
-    min_k2: 2
+    min_k2: 2  #Sets the minimum value of K2 (difference in slots between PDCCH and PUSCH).
   tdd_ul_dl_cfg:
     dl_ul_tx_period: 4
     nof_dl_slots: 2
