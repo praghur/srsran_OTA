@@ -33,3 +33,5 @@ tmux select-layout even-vertical
 tmux attach-session -d -t ue4
 sudo quectel-CM -s internet -4
 /local/repository/bin/module-off.sh
+##OR
+sudo sh -c "chat -t 1 -sv '' AT OK 'AT+CFUN=4' OK < /dev/ttyUSB2 > /dev/ttyUSB2"
