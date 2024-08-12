@@ -400,7 +400,7 @@ pc.defineStructParameter(
     description="Indoor OTA NUC with COTS UE",
     defaultValue=[{ "node_id": "ota-nuc2" }],
     multiValue=True,
-    min=3,
+    min=2,
     max=4,
     members=[
         portal.Parameter(
@@ -481,7 +481,7 @@ cn_node.addService(rspec.Execute(shell="bash", command=OPEN5GS_DEPLOY_SCRIPT))
 # single x310 for for observation or another gNodeB
 x310_node_pair1(0, params.x310_radio1)
 x310_node_pair2(1, params.x310_radio2)
-x310_node_pair3(2, params.x310_radio3)
+#x310_node_pair3(2, params.x310_radio3)
 
 # using nuc1 as a gNodeB for now
 #if params.srsran_commit_hash:
