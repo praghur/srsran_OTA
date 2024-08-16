@@ -39,13 +39,13 @@ amf:
       s_nssai:
         - sst: 1
           sd: 0x000001
-   - plmn_id:
+    - plmn_id:
         mcc: 999
         mnc: 99
       s_nssai:
         - sst: 1
           sd: 0x000002
-   - plmn_id:
+    - plmn_id:
         mcc: 999
         mnc: 99
       s_nssai:
