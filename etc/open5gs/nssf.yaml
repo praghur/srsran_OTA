@@ -20,9 +20,9 @@ nssf:
             sd: 0x000001
         - uri: http://127.0.0.10:7777
           s_nssai:
-            sst: 1
-            sd: 0x000002
+            sst: 2
+            sd: 0x000001
         - uri: http://127.0.0.10:7777
           s_nssai:
-            sst: 1
-            sd: 0x000003
+            sst: 3
+            sd: 0x000001
