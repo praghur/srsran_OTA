@@ -46,8 +46,8 @@ cell_cfg:
     bsr_cfg:
       periodic_bsr_timer: 1
   slicing:
-   - sst: 1
-     sd: 0x000003
+   - sst: 3
+     sd: 0x000001
      sched_cfg:
        min_prb_policy_ratio: 10
        max_prb_policy_ratio: 10
