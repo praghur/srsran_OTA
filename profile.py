@@ -29,8 +29,8 @@ Diagram](https://gitlab.flux.utah.edu/powderrenewpublic/powder-deployment/-/raw/
 The following will be deployed:
 
 - Server-class compute node (d430) with running the Open5GS 5G core network
-- Server-class compute node (d740) with GnuRadio and a fiber connection to an X310 for observing spectrum use
-- Intel NUC compute node with a B210 and srsRAN_Project for use as a gNodeB
+- Server-class compute  (d740) with GnuRadio and a fiber connection to an X310 for observing spectrum use
+- Intel NUC compute  with a B210 and srsRAN_Project for use as a gNodeB
 - Up to three other NUC compute nodes, each with a COTS 5G module and supporting tools
 
 Note: This profile currently defaults to using the 3430-3470 MHz spectrum
@@ -39,8 +39,8 @@ It's also strongly recommended that you include the following necessary
 resources in your reservation to gaurantee their availability at the time of
 your experiment:
 
-- A d430 compute node to host the core network
-- A d740 compute node for the spectrum observation node
+- A d430 compute  to host the core network
+- A d740 compute  for the spectrum observation 
 - At least two indoor OTA NUCs: one for the gNodeB and up to three more for COTS UEs
 
 """
@@ -107,7 +107,7 @@ In other UE sessions, turn them off to ensure UE connects to a particular gNB
 sudo sh -c "chat -t 1 -sv '' AT OK 'AT+CFUN=4' OK < /dev/ttyUSB2 > /dev/ttyUSB2"
 ```
 
-In another session on the same node, bring the UE online:
+In another session on the same , bring the UE online:
 
 ```
 sudo sh -c "chat -t 1 -sv '' AT OK 'AT+CFUN=1' OK < /dev/ttyUSB2 > /dev/ttyUSB2"
@@ -126,10 +126,10 @@ IP address in the stdout of the quectel-CM process.
 You should now be able to generate traffic in either direction:
 
 ```
-# from UE to CN traffic gen node (in session on ota-nucX-cots-ue)
+# from UE to CN traffic gen  (in session on ota-nucX-cots-ue)
 ping 10.45.0.1
 
-# from CN traffic generation service to UE (in session on CN5G node)
+# from CN traffic generation service to UE (in session on CN5G )
 ping <IP address from quectel-CM>
 ```
 
@@ -167,9 +167,8 @@ DEFAULT_SRSRAN_HASH = "4ac5300d4927b5199af69e6bc2e55d061fc33652"
 OPEN5GS_DEPLOY_SCRIPT = os.path.join(BIN_PATH, "deploy-open5gs.sh")
 SRSRAN_DEPLOY_SCRIPT = os.path.join(BIN_PATH, "deploy-srsran.sh")
 
-
-def x310_node_pair1(idx, x310_radio1):
-    node = request.RawPC("{}-gnb1".format(x310_radio1))
+def x310_node_pair(idx, x310_radio):
+    node = request.RawPC("{}-gnb".format(x310_radio))
     node.component_manager_id = COMP_MANAGER_ID
     node.hardware_type = params.sdr_nodetype
 
@@ -179,20 +178,20 @@ def x310_node_pair1(idx, x310_radio1):
         node.disk_image = UBUNTU_IMG
 
     node_radio_if = node.addInterface("usrp_if")
-    node_radio_if.addAddress(rspec.IPv4Address("192.168.40.10",
+    node_radio_if.addAddress(rspec.IPv4Address("192.168.40.1",
                                                "255.255.255.0"))
 
     radio_link = request.Link("radio-link-{}".format(idx))
     radio_link.bandwidth = 10*1000*1000
     radio_link.addInterface(node_radio_if)
 
-    radio = request.RawPC("{}-gnb1-sdr".format(x310_radio1))
-    radio.component_id = x310_radio1
+    radio = request.RawPC("{}-gnb-sdr".format(x310_radio))
+    radio.component_id = x310_radio
     radio.component_manager_id = COMP_MANAGER_ID
     radio_link.addNode(radio)
 
     nodeb_cn_if = node.addInterface("nodeb-cn-if")
-    nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 10), "255.255.255.0"))
+    nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 2), "255.255.255.0"))
     cn_link.addInterface(nodeb_cn_if)
 
     if params.srsran_commit_hash:
@@ -205,80 +204,6 @@ def x310_node_pair1(idx, x310_radio1):
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-cpu.sh"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-sdr-iface.sh"))
 
-def x310_node_pair2(idx, x310_radio2):
-    node = request.RawPC("{}-gnb2".format(x310_radio2))
-    node.component_manager_id = COMP_MANAGER_ID
-    node.hardware_type = params.sdr_nodetype
-
-    if params.sdr_compute_image:
-        node.disk_image = params.sdr_compute_image
-    else:
-        node.disk_image = UBUNTU_IMG
-
-    node_radio_if = node.addInterface("usrp_if")
-    node_radio_if.addAddress(rspec.IPv4Address("192.168.40.20",
-                                               "255.255.255.0"))
-
-    radio_link = request.Link("radio-link-{}".format(idx))
-    radio_link.bandwidth = 10*1000*1000
-    radio_link.addInterface(node_radio_if)
-
-    radio = request.RawPC("{}-gnb2-sdr".format(x310_radio2))
-    radio.component_id = x310_radio2
-    radio.component_manager_id = COMP_MANAGER_ID
-    radio_link.addNode(radio)
-
-    nodeb_cn_if = node.addInterface("nodeb-cn-if")
-    nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 10), "255.255.255.0"))
-    cn_link.addInterface(nodeb_cn_if)
-
-    if params.srsran_commit_hash:
-        srsran_hash = params.srsran_commit_hash
-    else:
-        srsran_hash = DEFAULT_SRSRAN_HASH
-
-    cmd = "{} '{}'".format(SRSRAN_DEPLOY_SCRIPT, srsran_hash)
-    node.addService(rspec.Execute(shell="bash", command=cmd))
-    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-cpu.sh"))
-    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-sdr-iface.sh"))
-
-def x310_node_pair3(idx, x310_radio3):
-    node = request.RawPC("{}-gnb3".format(x310_radio3))
-    node.component_manager_id = COMP_MANAGER_ID
-    node.hardware_type = params.sdr_nodetype
-
-    if params.sdr_compute_image:
-        node.disk_image = params.sdr_compute_image
-    else:
-        node.disk_image = UBUNTU_IMG
-
-    node_radio_if = node.addInterface("usrp_if")
-    node_radio_if.addAddress(rspec.IPv4Address("192.168.40.30",
-                                               "255.255.255.0"))
-
-    radio_link = request.Link("radio-link-{}".format(idx))
-    radio_link.bandwidth = 10*1000*1000
-    radio_link.addInterface(node_radio_if)
-
-    radio = request.RawPC("{}-gnb3-sdr".format(x310_radio3))
-    radio.component_id = x310_radio3
-    radio.component_manager_id = COMP_MANAGER_ID
-    radio_link.addNode(radio)
-
-    nodeb_cn_if = node.addInterface("nodeb-cn-if")
-    nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 10), "255.255.255.0"))
-    cn_link.addInterface(nodeb_cn_if)
-
-    if params.srsran_commit_hash:
-        srsran_hash = params.srsran_commit_hash
-    else:
-        srsran_hash = DEFAULT_SRSRAN_HASH
-
-    cmd = "{} '{}'".format(SRSRAN_DEPLOY_SCRIPT, srsran_hash)
-    node.addService(rspec.Execute(shell="bash", command=cmd))
-    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-cpu.sh"))
-    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-sdr-iface.sh"))
-  
 def b210_nuc_pair(b210_node):
     node = request.RawPC("{}-cots-ue".format(b210_node))
     node.component_manager_id = COMP_MANAGER_ID
@@ -287,30 +212,6 @@ def b210_nuc_pair(b210_node):
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
 
-def b210_nuc_pair2(b210_node):
-    node = request.RawPC("{}-cots-ue2".format(b210_node))
-    node.component_manager_id = COMP_MANAGER_ID
-    node.component_id = b210_node
-    node.disk_image = COTS_UE_IMG
-    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
-    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
-
-def b210_nuc_pair3(b210_node):
-    node = request.RawPC("{}-cots-ue3".format(b210_node))
-    node.component_manager_id = COMP_MANAGER_ID
-    node.component_id = b210_node
-    node.disk_image = COTS_UE_IMG
-    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
-    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
-
-def b210_nuc_pair4(b210_node):
-    node = request.RawPC("{}-cots-ue4".format(b210_node))
-    node.component_manager_id = COMP_MANAGER_ID
-    node.component_id = b210_node
-    node.disk_image = COTS_UE_IMG
-    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
-    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
-  
 pc = portal.Context()
 
 node_types = [
@@ -371,7 +272,7 @@ pc.defineParameter(
     name="x310_radio2",
     description="X310 Radio as gNB2",
     typ=portal.ParameterType.STRING,
-    defaultValue=indoor_ota_x310s[0],
+    defaultValue=indoor_ota_x310s[1],
     legalValues=indoor_ota_x310s
 )
 
@@ -379,21 +280,13 @@ pc.defineParameter(
     name="x310_radio3",
     description="X310 Radio as gNB3",
     typ=portal.ParameterType.STRING,
-    defaultValue=indoor_ota_x310s[0],
+    defaultValue=indoor_ota_x310s[2],
     legalValues=indoor_ota_x310s
 )
 
 indoor_ota_nucs = [
     ("ota-nuc{}".format(i), "Indoor OTA nuc{} with B210 and COTS UE".format(i)) for i in range(1, 5)
 ]
-
-#pc.defineParameter(
-#    name="b210_node_gnb",
-#    description="Indoor OTA NUC with B210 and srsRAN gNodeB",
-#    typ=portal.ParameterType.STRING,
-#    defaultValue=indoor_ota_nucs[0],
-#    legalValues=indoor_ota_nucs
-#)
 
 pc.defineStructParameter(
     name="ue_nodes",
@@ -412,30 +305,6 @@ pc.defineStructParameter(
         )
     ]
 )
-
-#pc.defineParameter(
-#    name="ue1",
-#    description="Indoor OTA NUC as ue1",
-#    typ=portal.ParameterType.STRING,
-#    defaultValue=indoor_ota_x310s[0],
-#    legalValues=indoor_ota_x310s
-#)
-
-#pc.defineParameter(
-#    name="ue2",
-#    description="Indoor OTA NUC as ue2",
-#    typ=portal.ParameterType.STRING,
-#    defaultValue=indoor_ota_x310s[1],
-#    legalValues=indoor_ota_x310s
-#)
-
-#pc.defineParameter(
-#    name="ue3",
-#    description="Indoor OTA NUC as ue3",
-#    typ=portal.ParameterType.STRING,
-#    defaultValue=indoor_ota_x310s[2],
-#    legalValues=indoor_ota_x310s
-#)
 
 pc.defineStructParameter(
     "freq_ranges", "Frequency Ranges To Transmit In",
@@ -479,32 +348,12 @@ cn_link.addInterface(cn_if)
 cn_node.addService(rspec.Execute(shell="bash", command=OPEN5GS_DEPLOY_SCRIPT))
 
 # single x310 for for observation or another gNodeB
-x310_node_pair1(0, params.x310_radio1)
-x310_node_pair2(1, params.x310_radio2)
-x310_node_pair3(2, params.x310_radio3)
-
-# using nuc1 as a gNodeB for now
-#if params.srsran_commit_hash:
-#    srsran_hash = params.srsran_commit_hash
-#else:
-#    srsran_hash = DEFAULT_SRSRAN_HASH
-
-#nuc_nodeb = request.RawPC("{}-gnb-comp".format(params.b210_node_gnb))
-#nuc_nodeb.component_manager_id = COMP_MANAGER_ID
-#nuc_nodeb.component_id = params.b210_node_gnb
-#nuc_nodeb.image = COTS_UE_IMG
-#node_cn_if = nuc_nodeb.addInterface("nuc-nodeb-cn-if")
-#node_cn_if.addAddress(rspec.IPv4Address("192.168.1.3", "255.255.255.0"))
-#cn_link.addInterface(node_cn_if)
-#cmd = "{} '{}'".format(SRSRAN_DEPLOY_SCRIPT, srsran_hash)
-#nuc_nodeb.addService(rspec.Execute(shell="bash", command=cmd))
-#nuc_nodeb.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
+x310_node_pair(0, params.x310_radio1)
+x310_node_pair(1, params.x310_radio2)
+x310_node_pair(2, params.x310_radio3)
 
 for ue_node in params.ue_nodes:
     b210_nuc_pair(ue_node.node_id)
-  # b210_nuc_pair2(ue_node.node_id)
-  # b210_nuc_pair3(ue_node.node_id)
-  #  b210_nuc_pair4(ue_node.node_id)
 
 for frange in params.freq_ranges:
     request.requestSpectrum(frange.freq_min, frange.freq_max, 0)
