@@ -310,7 +310,7 @@ pc.defineStructParameter(
     "freq_ranges", "Frequency Ranges To Transmit In",
     defaultValue=[{"freq_min": 3460.0, "freq_max": 3480.0}],
     multiValue=True,
-    min=3,
+    min=0,
     max=3,
     multiValueTitle="Frequency ranges to be used for transmission.",
     members=[
