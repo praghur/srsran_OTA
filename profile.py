@@ -334,6 +334,7 @@ pc.defineStructParameter(
 params = pc.bindParameters()
 pc.verifyParameters()
 request = pc.makeRequestRSpec()
+request.setRoutingStyle("none")
 
 role = "cn"
 cn_node = request.RawPC("cn5g")
