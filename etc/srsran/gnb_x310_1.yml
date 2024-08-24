@@ -36,9 +36,9 @@ cell_cfg:
   tdd_ul_dl_cfg:
     dl_ul_tx_period: 4 #Sets the TDD pattern periodicity in slots. The combination of this value and the chosen numerology must lead to a TDD periodicity of 0.5, 0.625, 1, 1.25, 2, 2.5, 3, 4, 5 or 10 milliseconds
     nof_dl_slots: 2
-    nof_dl_symbols: 10
+    nof_dl_symbols: 0
     nof_ul_slots: 1
-    nof_ul_symbols: 0
+    nof_ul_symbols: 11
   pucch:
     sr_period_ms: 2  #SR is an Uplink Physical Layer message from UE to Network, saying "I have some data to send to you. Would you send me some Grant for me to send the data ?"
     min_k1: 2 #Sets the minimum value of K1 (difference in slots between PDSCH and HARQ-ACK). Lower k1 values will reduce latency, but place a stricter requirement on the UE decode latency.
