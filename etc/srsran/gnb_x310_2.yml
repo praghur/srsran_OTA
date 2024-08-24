@@ -36,9 +36,9 @@ cell_cfg:
   tdd_ul_dl_cfg:
     dl_ul_tx_period: 4
     nof_dl_slots: 2
-    nof_dl_symbols: 10
+    nof_dl_symbols: 0
     nof_ul_slots: 1
-    nof_ul_symbols: 0
+    nof_ul_symbols: 11
   pucch:
     sr_period_ms: 2
     min_k1: 2
