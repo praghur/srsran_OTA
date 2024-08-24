@@ -39,6 +39,12 @@ cell_cfg:
     nof_dl_symbols: 0
     nof_ul_slots: 1
     nof_ul_symbols: 11
+    pattern2: 
+      dl_ul_tx_period: 6                       # Optional INT (10). Sets the TDD pattern periodicity in slots. The combination of this value and the chosen numerology must lead to a TDD periodicity of 0.5, 0.625, 1, 1.25, 2, 2.5, 3, 4, 5 or 10 milliseconds. Supported: [2 - 80].
+      nof_dl_slots: 2                           # Optional INT (6). Number of consecutive full Downlink slots. Supported: [0-80].
+      nof_dl_symbols: 10                         # Optional INT (8). Number of Downlink symbols at the beginning of the slot following full Downlink slots. Supported: [0-13]
+      nof_ul_slots: 3                           # Optional INT (3). Number of consecutive full Uplink slots. Supported: [0 - 80].
+      nof_ul_symbols: 0                         # Optional INT (0). Number of Uplink symbols at the end of the slot preceding the first full Uplink slot. Supported: [0-13].
   pucch:
     sr_period_ms: 2
     min_k1: 2
