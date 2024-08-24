@@ -48,9 +48,9 @@ cell_cfg:
   slicing:
    - sst: 3
      sd: 0x000001
-     sched_cfg:
-       min_prb_policy_ratio: 10
-       max_prb_policy_ratio: 10
+#     sched_cfg:
+#       min_prb_policy_ratio: 10
+#       max_prb_policy_ratio: 10
 
 expert_phy:
   max_request_headroom_slots: 0
