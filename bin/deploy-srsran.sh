@@ -78,3 +78,4 @@ sudo sysctl -w net.core.rmem_max=25000000
 
 SDR_IFACE=$(ifconfig | grep -B1 "192.168.40." | grep -o "^\w*")
 sudo ifconfig $SDR_IFACE mtu 9000
+touch $SRCDIR/sdr-interface-setup-complete
