@@ -71,3 +71,10 @@ echo configuring nodeb... done.
 
 touch $SRCDIR/srs-setup-complete
 uhd_find_devices
+
+echo setting up sdr interface...
+sudo sysctl -w net.core.wmem_max=25000000
+sudo sysctl -w net.core.rmem_max=25000000
+
+SDR_IFACE=$(ifconfig | grep -B1 "192.168.40." | grep -o "^\w*")
+sudo ifconfig $SDR_IFACE mtu 9000
