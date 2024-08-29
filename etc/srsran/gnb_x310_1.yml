@@ -1,6 +1,8 @@
 gnb_id: 100
 gnb_id_bit_length: 32
 
+qos:
+
 amf:
   addr: 192.168.1.1
   bind_addr: 192.168.1.2
