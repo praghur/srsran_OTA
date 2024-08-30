@@ -211,7 +211,8 @@ def b210_nuc_pair(b210_node):
     node.disk_image = COTS_UE_IMG
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
-    ip_address = "192.168.10.{}".format(b210_node) #Assign IP address
+    node_index = int(''.join(filter(str.isdigit, b210_node)))  
+    ip_address = "192.168.10.{}".format(node_index) #Assign IP address
     node.addService(rspec.Execute(shell="bash", command="ifconfig eth0 {}".format(ip_address)))
 
 pc = portal.Context()
