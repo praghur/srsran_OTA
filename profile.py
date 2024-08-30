@@ -214,6 +214,36 @@ def b210_nuc_pair1(b210_node):
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
 
+def b210_nuc_pair2(b210_node):
+    node = request.RawPC("{}-cots-ue".format(b210_node))
+    node.component_manager_id = COMP_MANAGER_ID
+    node.component_id = b210_node
+    node.disk_image = COTS_UE_IMG
+    node_if = node.addInterface("eth0")
+    node_if.addAddress(rspec.IPv4Address("192.168.10.2","255.255.255.0"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
+
+def b210_nuc_pair3(b210_node):
+    node = request.RawPC("{}-cots-ue".format(b210_node))
+    node.component_manager_id = COMP_MANAGER_ID
+    node.component_id = b210_node
+    node.disk_image = COTS_UE_IMG
+    node_if = node.addInterface("eth0")
+    node_if.addAddress(rspec.IPv4Address("192.168.10.3","255.255.255.0"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
+
+def b210_nuc_pair4(b210_node):
+    node = request.RawPC("{}-cots-ue".format(b210_node))
+    node.component_manager_id = COMP_MANAGER_ID
+    node.component_id = b210_node
+    node.disk_image = COTS_UE_IMG
+    node_if = node.addInterface("eth0")
+    node_if.addAddress(rspec.IPv4Address("192.168.10.4","255.255.255.0"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
+
 pc = portal.Context()
 
 node_types = [
@@ -355,8 +385,10 @@ x310_node_pair(0, params.x310_radio1)
 x310_node_pair(1, params.x310_radio2)
 x310_node_pair(2, params.x310_radio3)
 
-for ue_node in params.ue_nodes:
-    b210_nuc_pair(ue_node.node_id)
+b210_nuc_pair1(ota-nuc1)
+b210_nuc_pair2(ota-nuc2)
+b210_nuc_pair3(ota-nuc3)
+b210_nuc_pair4(ota-nuc4)
 
 for frange in params.freq_ranges:
     request.requestSpectrum(frange.freq_min, frange.freq_max, 0)
