@@ -204,16 +204,15 @@ def x310_node_pair(idx, x310_radio):
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-cpu.sh"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-sdr-iface.sh"))
 
-def b210_nuc_pair(b210_node):
+def b210_nuc_pair1(b210_node):
     node = request.RawPC("{}-cots-ue".format(b210_node))
     node.component_manager_id = COMP_MANAGER_ID
     node.component_id = b210_node
     node.disk_image = COTS_UE_IMG
+    node_if = node.addInterface("eth0")
+    node_if.addAddress(rspec.IPv4Address("192.168.10.1","255.255.255.0"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/module-off.sh"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-udhcpc-script.sh"))
-    #node_index = int(''.join(filter(str.isdigit, b210_node)))  
-    #ip_address = "192.168.10.{}".format(node_index) #Assign IP address
-    #node.addService(rspec.Execute(shell="bash", command="ifconfig eth0 {}".format(ip_address)))
 
 pc = portal.Context()
 
