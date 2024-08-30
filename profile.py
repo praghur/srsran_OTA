@@ -385,10 +385,10 @@ x310_node_pair(0, params.x310_radio1)
 x310_node_pair(1, params.x310_radio2)
 x310_node_pair(2, params.x310_radio3)
 
-b210_nuc_pair1(ota-nuc1)
-b210_nuc_pair2(ota-nuc2)
-b210_nuc_pair3(ota-nuc3)
-b210_nuc_pair4(ota-nuc4)
+b210_nuc_pair1("ota-nuc1")
+b210_nuc_pair2("ota-nuc2")
+b210_nuc_pair3("ota-nuc3")
+b210_nuc_pair4("ota-nuc4")
 
 for frange in params.freq_ranges:
     request.requestSpectrum(frange.freq_min, frange.freq_max, 0)
