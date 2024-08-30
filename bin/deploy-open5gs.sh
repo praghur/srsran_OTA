@@ -63,4 +63,12 @@ for imsi in {000..003}; do
    ./open5gs-dbctl type 999990000000$imsi 1  # APN type IPV4
 done
 
+./open5gs-dbctl static_ip 999990000000000 192.168.10.1
+./open5gs-dbctl static_ip 999990000000001 192.168.10.2
+./open5gs-dbctl static_ip 999990000000002 192.168.10.3
+./open5gs-dbctl static_ip 999990000000003 192.168.10.4
+
+
+
+
 touch $SRCDIR/open5gs-setup-complete
