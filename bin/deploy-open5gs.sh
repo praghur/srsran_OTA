@@ -71,7 +71,7 @@ chmod +x open5gs-dbctl
 ##For UE3 connecting with gNB3
 ./open5gs-dbctl add_ue_with_slice 999990000000002 00112233445566778899aabbccddeeff 0ed47545168eafe2c39c075829a7b61f internet 3 0x000001 # IMSI,K,OPC
 ./open5gs-dbctl type 999990000000002 1  # APN type IPV4
-./open5gs-dbctl static_ip 999990000000002 192.168.30.30
+./open5gs-dbctl static_ip 999990000000002 192.168.30.1
 
 ##For UE4 connecting with gNB3
 ./open5gs-dbctl add_ue_with_slice 999990000000003 00112233445566778899aabbccddeeff 0ed47545168eafe2c39c075829a7b61f internet 3 0x000001 # IMSI,K,OPC
