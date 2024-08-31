@@ -66,16 +66,16 @@ chmod +x open5gs-dbctl
 ##For UE2 connecting with gNB2
 ./open5gs-dbctl add_ue_with_slice 999990000000001 00112233445566778899aabbccddeeff 0ed47545168eafe2c39c075829a7b61f internet 2 0x000001 # IMSI,K,OPC
 ./open5gs-dbctl type 999990000000001 1  # APN type IPV4
-./open5gs-dbctl static_ip 999990000000001 192.168.10.2
+./open5gs-dbctl static_ip 999990000000001 192.168.20.1
 
 ##For UE3 connecting with gNB3
 ./open5gs-dbctl add_ue_with_slice 999990000000002 00112233445566778899aabbccddeeff 0ed47545168eafe2c39c075829a7b61f internet 3 0x000001 # IMSI,K,OPC
 ./open5gs-dbctl type 999990000000002 1  # APN type IPV4
-./open5gs-dbctl static_ip 999990000000002 192.168.10.3
+./open5gs-dbctl static_ip 999990000000002 192.168.30.30
 
 ##For UE4 connecting with gNB3
 ./open5gs-dbctl add_ue_with_slice 999990000000003 00112233445566778899aabbccddeeff 0ed47545168eafe2c39c075829a7b61f internet 3 0x000001 # IMSI,K,OPC
 ./open5gs-dbctl type 999990000000003 1  # APN type IPV4
-./open5gs-dbctl static_ip 999990000000003 192.168.10.4
+./open5gs-dbctl static_ip 999990000000003 192.168.30.40
 
 touch $SRCDIR/open5gs-setup-complete
