@@ -19,3 +19,20 @@ sudo sysctl -w net.ipv4.ip_forward=1
 
 # Add a route from ueif to gnbif
 sudo iptables -t nat -A POSTROUTING -s 192.168.10.0/24 -o gnbif -j MASQUERADE
+
+
+
+------------------Alternately, using ip route ----------------------------
+On the 5G Core Network (192.168.1.1):
+Route to UE network via gNB:
+sudo ip route add 192.168.30.0/24 via 192.168.1.2
+
+On the UE (192.168.30.40):
+Route to 5G core network via gNB:
+sudo ip route add 192.168.1.0/24 via 192.168.1.2
+
+On the gNB (192.168.1.2):
+Enable IP forwarding and add routes:
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo ip route add 192.168.1.0/24 via 192.168.1.1
+sudo ip route add 192.168.30.0/24 via 192.168.30.40
