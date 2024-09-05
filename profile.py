@@ -194,6 +194,9 @@ def x310_node_pair(idx, x310_radio):
     nodeb_cn_if.addAddress(rspec.IPv4Address("192.168.1.{}".format(idx + 2), "255.255.255.0"))
     cn_link.addInterface(nodeb_cn_if)
 
+    ethue = node.addInterface("ethue")
+    ethue.addAddress(rspec.IPv4Address("192.168.{}.1".format(idx*10 + 10), "255.255.255.252"))
+
     if params.srsran_commit_hash:
         srsran_hash = params.srsran_commit_hash
     else:
