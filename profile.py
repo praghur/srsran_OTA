@@ -302,14 +302,14 @@ pc.defineStructParameter(
             "freq_min",
             "Frequency Range Min",
             portal.ParameterType.BANDWIDTH,
-            3460.0,
+            3400.0,
             longDescription="Values are rounded to the nearest kilohertz."
         ),
         portal.Parameter(
             "freq_max",
             "Frequency Range Max",
             portal.ParameterType.BANDWIDTH,
-            3480.0,
+            3460.0,
             longDescription="Values are rounded to the nearest kilohertz."
         ),
     ]
@@ -334,6 +334,7 @@ cn_node.addService(rspec.Execute(shell="bash", command=OPEN5GS_DEPLOY_SCRIPT))
 
 # single x310 for for observation or another gNodeB
 x310_node_pair(0, params.x310_radio1)
+x310_node_pair(0, params.x310_radio2)
 
 
 for ue_node in params.ue_nodes:
