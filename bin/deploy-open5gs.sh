@@ -5,6 +5,7 @@ source $BINDIR/common.sh
 
 sudo sysctl -w net.ipv4.ip_forward=1
 sudo iptables -t nat -A POSTROUTING -s 10.45.0.0/16 ! -o ogstun -j MASQUERADE
+#sudo iptables -t nat -A POSTROUTING -s 192.168.0.0/16 ! -o enp4s0f1 -j MASQUERADE
 
 if [ -f $SRCDIR/open5gs-setup-complete ]; then
     echo "setup already ran; not running again"
