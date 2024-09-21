@@ -6,6 +6,8 @@ tmux attach-session -d -t ue1
 sudo quectel-CM -s internet -4
 /local/repository/bin/module-off.sh
 /local/repository/bin/module-on.sh
+sudo ip route add 10.45.2.10 via 10.45.0.1
+
 
 
 set -ux
@@ -16,6 +18,8 @@ tmux attach-session -d -t ue2
 sudo quectel-CM -s internet -4
 /local/repository/bin/module-off.sh
 /local/repository/bin/module-on.sh
+sudo ip route add 10.45.1.10 via 10.45.0.1
+
 
 set -ux
 tmux new-session -d -s ue3
