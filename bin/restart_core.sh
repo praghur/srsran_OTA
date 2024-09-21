@@ -14,3 +14,7 @@ sudo systemctl restart open5gs-pcfd
 sudo systemctl restart open5gs-nssfd
 sudo systemctl restart open5gs-bsfd
 sudo systemctl restart open5gs-udrd
+
+sudo ip route add 10.45.2.10 via 10.45.0.1
+sudo ip route add 10.45.1.10 via 10.45.0.1
+
