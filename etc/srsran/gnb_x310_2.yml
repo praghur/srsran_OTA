@@ -61,22 +61,22 @@ log:
   rrc_level: debug
 
 pcap:
-  ngap_filename: /tmp/gnb_ngap.pcap     # Optional TEXT (/tmp/gnb_ngap.pcap). Path for NGAP PCAPs. 
+  ngap_filename: /tmp/gnb2_ngap.pcap     # Optional TEXT (/tmp/gnb_ngap.pcap). Path for NGAP PCAPs. 
   ngap_enable: false                    # Optional BOOLEAN (false). Enable/disable NGAP packet capture. Supported: [false, true].
-  n3_filename: /tmp/gnb_n3.pcap         # Optional TEXT (/tmp/gnb_n3.pcap). Path for N3 PCAPs. 
+  n3_filename: /tmp/gnb2_n3.pcap         # Optional TEXT (/tmp/gnb_n3.pcap). Path for N3 PCAPs. 
   n3_enable: false                      # Optional BOOLEAN (false). Enable/disable N3 packet capture. Supported: [false, true].
-  e1ap_filename: /tmp/gnb_e1ap.pcap     # Optional TEXT (/tmp/gnb_e1ap.pcap). Path for E1AP PCAPs. 
+  e1ap_filename: /tmp/gnb2_e1ap.pcap     # Optional TEXT (/tmp/gnb_e1ap.pcap). Path for E1AP PCAPs. 
   e1ap_enable: false                    # Optional BOOLEAN (false). Enable/disable E1AP packet capture. Supported: [false, true].
-  f1ap_filename: /tmp/gnb_f1ap.pcap     # Optional TEXT (/tmp/gnb_f1ap.pcap). Path for F1AP PCAPs. 
+  f1ap_filename: /tmp/gnb2_f1ap.pcap     # Optional TEXT (/tmp/gnb_f1ap.pcap). Path for F1AP PCAPs. 
   f1ap_enable: false                    # Optional BOOLEAN (false). Enable/disable F1AP packet capture. Supported: [false, true].
-  f1u_filename: /tmp/gnb_f1u.pcap       # Optional TEXT (/tmp/gnb_f1ap.pcap). Path for F1AP PCAPs. 
+  f1u_filename: /tmp/gnb2_f1u.pcap       # Optional TEXT (/tmp/gnb_f1ap.pcap). Path for F1AP PCAPs. 
   f1u_enable: false                     # Optional BOOLEAN (false). Enable/disable F1AP packet capture. Supported: [false, true].
-  rlc_filename: /tmp/gnb_rlc.pcap       # Optional TEXT (tmp/gnb_rlc.pcap). Path for RLC PCAPs. 
+  rlc_filename: /tmp/gnb2_rlc.pcap       # Optional TEXT (tmp/gnb_rlc.pcap). Path for RLC PCAPs. 
   rlc_rb_type: all                      # Optional TEXT. Sets the RLC PCAP RB type. Supported: [all, srb, drb].
   rlc_enable: false                     # Optional BOOLEAN (false). Enable/disable RLC packet capture. Supported: [false, true].  
-  mac_filename: /tmp/gnb_mac.pcap       # Optional TEXT (/tmp/gnb_mac.pcap). Path for MAC PCAPs. 
+  mac_filename: /tmp/gnb2_mac.pcap       # Optional TEXT (/tmp/gnb_mac.pcap). Path for MAC PCAPs. 
   mac_type: udp                         # Optional TEXT (udp). Sets the MAC PCAP pcap type. Supported: [DLT or UDP].
   mac_enable: true                     # Optional BOOLEAN (false). Enable/disable MAC packet capture. Supported: [false, true].
-  e2ap_filename: /tmp/gnb_e2ap.pcap     # Optional TEXT (/tmp/gnb_e2ap.pcap). Path for E2AP PCAPs. 
+  e2ap_filename: /tmp/gnb2_e2ap.pcap     # Optional TEXT (/tmp/gnb_e2ap.pcap). Path for E2AP PCAPs. 
   e2ap_enable: false                    # Optional BOOLEAN (false). Enable/disable E2AP packet capture. Supported: [false, true].
 
