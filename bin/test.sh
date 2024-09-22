@@ -20,7 +20,7 @@ sudo apt-get install traceroute
 
 #At the source machine (client), run the traceroute command with -U to indicate UDP packets. 
 #The size can be changed (I did not test this) using the command traceroute -U -s 1200 10.45.0.9 where 1200 bytes of UDP packets will be sent
-traceroute -U 10.45.0.9
+traceroute -U -p 33435 10.45.2.10
 
 #Import pcap files from server to VM
 scp praghur@pc14-fort.emulab.net:/var/tmp/gnb_mac.pcap /home/ubuntu/
