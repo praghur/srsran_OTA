@@ -64,7 +64,7 @@ pcap:
   ngap_filename: /tmp/gnb2_ngap.pcap     # Optional TEXT (/tmp/gnb_ngap.pcap). Path for NGAP PCAPs. 
   ngap_enable: false                    # Optional BOOLEAN (false). Enable/disable NGAP packet capture. Supported: [false, true].
   n3_filename: /tmp/gnb2_n3.pcap         # Optional TEXT (/tmp/gnb_n3.pcap). Path for N3 PCAPs. 
-  n3_enable: false                      # Optional BOOLEAN (false). Enable/disable N3 packet capture. Supported: [false, true].
+  n3_enable: true                      # Optional BOOLEAN (false). Enable/disable N3 packet capture. Supported: [false, true].
   e1ap_filename: /tmp/gnb2_e1ap.pcap     # Optional TEXT (/tmp/gnb_e1ap.pcap). Path for E1AP PCAPs. 
   e1ap_enable: false                    # Optional BOOLEAN (false). Enable/disable E1AP packet capture. Supported: [false, true].
   f1ap_filename: /tmp/gnb2_f1ap.pcap     # Optional TEXT (/tmp/gnb_f1ap.pcap). Path for F1AP PCAPs. 
