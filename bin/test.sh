@@ -30,6 +30,6 @@ scp praghur@pc714.emulab.net:/tmp/gnb2_n3.pcap /home/ubuntu/
 scp praghur@pc715.emulab.net:/ogstun_capture.pcap /home/ubuntu/
 scp praghur@pc715.emulab.net:/enp4s0f1_capture.pcap /home/ubuntu/
 scp praghur@pc716.emulab.net:enp4s0f1_gnb1.pcap /home/ubuntu/
-scp praghur@pc716.emulab.net:enp4s0f1_gnb2.pcap /home/ubuntu/
+scp praghur@pc714.emulab.net:enp4s0f1_gnb2.pcap /home/ubuntu/
 scp praghur@ota-nuc3.emulab.net:ue1_capture.pcap /home/ubuntu/
 scp praghur@ota-nuc4.emulab.net:ue2_capture.pcap /home/ubuntu/
