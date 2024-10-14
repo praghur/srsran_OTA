@@ -271,13 +271,13 @@ pc.defineParameter(
     legalValues=indoor_ota_x310s
 )
 
-pc.defineParameter(
-    name="x310_radio2",
-    description="X310 Radio as gNB2",
-    typ=portal.ParameterType.STRING,
-    defaultValue=indoor_ota_x310s[1],
-    legalValues=indoor_ota_x310s
-)
+#pc.defineParameter(
+#    name="x310_radio2",
+#    description="X310 Radio as gNB2",
+#    typ=portal.ParameterType.STRING,
+#    defaultValue=indoor_ota_x310s[1],
+#    legalValues=indoor_ota_x310s
+#)
 
 indoor_ota_nucs = [
     ("ota-nuc{}".format(i), "Indoor OTA nuc{} with B210 and COTS UE".format(i)) for i in range(1, 5)
