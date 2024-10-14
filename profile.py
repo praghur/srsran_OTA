@@ -345,7 +345,7 @@ cn_node.addService(rspec.Execute(shell="bash", command=OPEN5GS_DEPLOY_SCRIPT))
 
 # single x310 for for observation or another gNodeB
 x310_node_pair(0, params.x310_radio1)
-x310_node_pair(1, params.x310_radio2)
+#x310_node_pair(1, params.x310_radio2)
 
 
 for ue_node in params.ue_nodes:
