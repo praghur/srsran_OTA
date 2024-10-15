@@ -46,11 +46,11 @@ cell_cfg:
     bsr_cfg:
       periodic_bsr_timer: 1
   slicing:
-   - sst: 2
+   - sst: 4
      sd: 0x000001
-     sched_cfg:
-       min_prb_policy_ratio: 50
-       max_prb_policy_ratio: 75
+#     sched_cfg:
+#       min_prb_policy_ratio: 50
+#       max_prb_policy_ratio: 75
 
 expert_phy:
   max_request_headroom_slots: 0
