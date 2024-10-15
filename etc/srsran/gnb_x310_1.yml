@@ -51,10 +51,10 @@ cell_cfg:
    - sst: 1
      sd: 0x000001
      sched_cfg:
-       min_prb_policy_ratio: 50
-       max_prb_policy_ratio: 75
-#   - sst: 3
-#     sd: 0x000001
+       min_prb_policy_ratio: 90
+       max_prb_policy_ratio: 100
+   - sst: 3
+     sd: 0x000001
 #     sched_cfg:
 #       min_prb_policy_ratio: 50
 #       max_prb_policy_ratio: 75
