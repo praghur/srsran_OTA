@@ -53,8 +53,8 @@ cell_cfg:
      sched_cfg:
        min_prb_policy_ratio: 50
        max_prb_policy_ratio: 75
-   - sst: 3
-     sd: 0x000001
+#   - sst: 3
+#     sd: 0x000001
 #     sched_cfg:
 #       min_prb_policy_ratio: 50
 #       max_prb_policy_ratio: 75
