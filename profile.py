@@ -33,6 +33,7 @@ The following will be deployed:
 - Intel NUC compute  with a B210 and srsRAN_Project for use as a gNodeB
 - Up to three other NUC compute nodes, each with a COTS 5G module and supporting tools
 
+
 Note: This profile currently defaults to using the 3430-3470 MHz spectrum
 range and you need an approved reservation for this spectrum in order to use it.
 It's also strongly recommended that you include the following necessary
