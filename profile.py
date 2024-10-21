@@ -280,6 +280,14 @@ pc.defineParameter(
     legalValues=indoor_ota_x310s
 )
 
+pc.defineParameter(
+    name="x310_radio3",
+    description="X310 Radio as gNB3",
+    typ=portal.ParameterType.STRING,
+    defaultValue=indoor_ota_x310s[2],
+    legalValues=indoor_ota_x310s
+)
+
 indoor_ota_nucs = [
     ("ota-nuc{}".format(i), "Indoor OTA nuc{} with B210 and COTS UE".format(i)) for i in range(1, 5)
 ]
@@ -347,6 +355,7 @@ cn_node.addService(rspec.Execute(shell="bash", command=OPEN5GS_DEPLOY_SCRIPT))
 # single x310 for for observation or another gNodeB
 x310_node_pair(0, params.x310_radio1)
 x310_node_pair(1, params.x310_radio2)
+x310_node_pair(2, params.x310_radio3)
 
 
 for ue_node in params.ue_nodes:
