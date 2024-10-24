@@ -22,6 +22,12 @@ sudo apt-get install traceroute
 #The size can be changed (I did not test this) using the command traceroute -U -s 1200 10.45.0.9 where 1200 bytes of UDP packets will be sent
 traceroute -U -f 2 -m 2 -p 33435 10.45.4.10
 
+#Capture pcap files from a certain interfaces
+sudo tcpdump -i ogstun -w ogstun_capture.pcap
+sudo tcpdump -i enx06cf47ef69ee -w ue1_capture.pcap
+sudo tcpdump -i enx2eece1f2eb75 -w ue2_capture.pcap
+sudo tcpdump -i enxbe54d9f44211 -w ue3_capture.pcap
+
 #Import pcap files from server to VM
 scp praghur@pc716.emulab.net:/tmp/gnb1_mac.pcap /home/ubuntu/
 scp praghur@pc716.emulab.net:/tmp/gnb1_n3.pcap /home/ubuntu/
