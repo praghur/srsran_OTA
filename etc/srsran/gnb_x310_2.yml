@@ -50,7 +50,7 @@ cell_cfg:
      sd: 0x000001
      sched_cfg:
        min_prb_policy_ratio: 50
-       max_prb_policy_ratio: 75
+       max_prb_policy_ratio: 100
 
 expert_phy:
   max_request_headroom_slots: 0
