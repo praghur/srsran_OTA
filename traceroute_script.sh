@@ -1,3 +1,4 @@
+##Use this script for the source (UE1)
 sudo tcpdump -i any host 8.8.8.8 -w /home/ubuntu/traceroute_ue1.pcap &
 #sudo tcpdump -i any host 10.45.2.10 -w /tmp/traceroute_ue1.pcap &
 
@@ -10,3 +11,8 @@ sudo tcpdump -i any host 8.8.8.8 -w /home/ubuntu/traceroute_ue1.pcap &
  sudo pkill tcpdump
  sudo chmod 777 -v /home/ubuntu/traceroute_ue1.pcap
  #sudo chmod 777 -v /tmp/traceroute_ue1.pcap
+ touch /tmp/traceroute_done
+
+
+
+##Use this script for the destination (UE3)
