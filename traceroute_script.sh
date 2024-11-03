@@ -24,5 +24,4 @@ sudo tcpdump -i any host 8.8.8.8 -w /home/ubuntu/traceroute_ue1.pcap &
     done
     # Stop tcpdump
     sudo pkill tcpdump
-    # Remove the signal file
-    rm /tmp/traceroute_done
+
