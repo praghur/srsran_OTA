@@ -16,3 +16,13 @@ sudo tcpdump -i any host 8.8.8.8 -w /home/ubuntu/traceroute_ue1.pcap &
 
 
 ##Use this script for the destination (UE3)
+# Start tcpdump to capture packets in CSV format
+    sudo tcpdump -i any host 10.45.1.10 -w  /tmp/traceroute_UE2.pcap &
+    # Loop to check for the signal file
+    while [ ! -f /tmp/traceroute_done ]; do
+        sleep 5
+    done
+    # Stop tcpdump
+    sudo pkill tcpdump
+    # Remove the signal file
+    rm /tmp/traceroute_done
