@@ -1,21 +1,10 @@
-#On the node containing gNB1 (with IP 192.168.40.1)
-# Enable IP forwarding
-sudo sysctl -w net.ipv4.ip_forward=1
-# Add a route from gnbif to cnif
-sudo iptables -t nat -A POSTROUTING -s 192.168.40.0/24 -o cnif -j MASQUERADE
-# Add a route from gnbif to ueif
-sudo iptables -t nat -A POSTROUTING -s 192.168.40.0/24 -o ueif -j MASQUERADE
-
-#On the node containing cnif (with IP 192.168.1.1)
-# Enable IP forwarding
-sudo sysctl -w net.ipv4.ip_forward=1
-# Add a route from cnif to gnbif
-sudo iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o gnbif -j MASQUERADE
+-----------------Alternately, using ip route ----------------------------
+On the UE:
+Route to 5G core network via gNB:
+sudo ip route add 10.45.1.10 via 10.45.0.1
+sudo ip route add 10.45.2.10 via 10.45.0.1
+sudo ip route add 10.45.3.10 via 10.45.0.1
+sudo ip route add 10.45.4.10 via 10.45.0.1
 
 
-#On the node containing ueif (with IP 192.168.10.1):
-# Enable IP forwarding
-sudo sysctl -w net.ipv4.ip_forward=1
-
-# Add a route from ueif to gnbif
-sudo iptables -t nat -A POSTROUTING -s 192.168.10.0/24 -o gnbif -j MASQUERADE
+No change required in core network:

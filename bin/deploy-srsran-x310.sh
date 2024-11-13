@@ -45,6 +45,7 @@ uhd_find_devices
 sudo apt-get install -y \
   cmake \
   make \
+  gedit\
   gcc \
   g++ \
   iperf3 \
