@@ -1,4 +1,4 @@
-logger:
+logger: 
   file: /var/log/open5gs/amf.log
 
 global:
