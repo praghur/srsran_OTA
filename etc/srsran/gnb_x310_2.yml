@@ -34,11 +34,11 @@ cell_cfg:
   pusch:    #This is copied from low_latency.yml file in srsRAN_Project/config directory
     min_k2: 2
   tdd_ul_dl_cfg:
-    dl_ul_tx_period: 4
-    nof_dl_slots: 2
+    dl_ul_tx_period: 10
+    nof_dl_slots: 6
     nof_dl_symbols: 0
-    nof_ul_slots: 1
-    nof_ul_symbols: 11
+    nof_ul_slots: 3
+    nof_ul_symbols: 0
   pucch:
     sr_period_ms: 2
     min_k1: 2
