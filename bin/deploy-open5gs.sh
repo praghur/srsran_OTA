@@ -70,3 +70,4 @@ chmod +x open5gs-dbctl
 ./open5gs-dbctl static_ip 999990000000001 10.45.2.10
 
 touch $SRCDIR/open5gs-setup-complete
+#ssh root@pc05-fort.emulab.net -C -L 9999:127.0.0.1:9999 For WebUI
