@@ -3,7 +3,7 @@ gnb_id_bit_length: 32
 
 qos:
   -
-    five_qi: 9 # E.g. Conversational Voice
+    five_qi: 85 # E.g. Conversational Voice
     rlc:
       mode: um-bidir
       um-bidir:
@@ -61,6 +61,8 @@ cell_cfg:
   pci: 1
   pdsch:
     mcs_table: qam256
+    nof_harqs: 16                   # Sets the number of Downlink HARQ processes.
+    max_nof_harq_retxs: 4           # Enable HARQ retransmissions.
   ssb:
     ssb_period: 20
   pusch:    #This is copied from low_latency.yml file in srsRAN_Project/config directory
@@ -89,8 +91,9 @@ expert_phy:
   max_proc_delay: 1
 
 log:
-  all_level: info
-  rrc_level: debug
+  filename: /tmp/gnb2.log            # Path of the log file.
+  phy_level: debug
+  hex_max_size: 0
 
 pcap:
   ngap_filename: /tmp/gnb2_ngap.pcap     # Optional TEXT (/tmp/gnb_ngap.pcap). Path for NGAP PCAPs. 
