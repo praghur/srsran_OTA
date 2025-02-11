@@ -3,7 +3,7 @@ gnb_id_bit_length: 32
 
 qos:
   -
-    five_qi: 9 # E.g. Conversational Voice
+    five_qi: 85 # E.g. Conversational Voice
     rlc:
       mode: um-bidir
       um-bidir:
@@ -61,6 +61,8 @@ cell_cfg:
   pci: 1  #Physical Cell ID
   pdsch:
     mcs_table: qam256
+    nof_harqs: 16                   # Sets the number of Downlink HARQ processes.
+    max_nof_harq_retxs: 4           # Enable HARQ retransmissions.
   ssb:
     ssb_period: 20  #Period of SSB scheduling in milliseconds
   pusch:    #This is copied from low_latency.yml file in srsRAN_Project/config directory
@@ -83,18 +85,14 @@ cell_cfg:
      sched_cfg:
        min_prb_policy_ratio: 90
        max_prb_policy_ratio: 100
-#   - sst: 3
-#     sd: 0x000001
-#     sched_cfg:
-#       min_prb_policy_ratio: 50
-#       max_prb_policy_ratio: 75
+
 expert_phy:
   max_request_headroom_slots: 0 #PHR is a type of MAC CE(MAC Control Element) that report the headroom between the current UE Tx power (estimated power) and the nominal power. eNodeB (Network) use this report value to estimate how much uplink bandwidth a UE can use for a specific subframe. Since the more resource block the UE is using, the higher UE Tx power gets, but the UE Tx power should not exceed the max power defined in the specification. So UE cannot use much resource block (bandwidth) if it does not have enough power headroom.
   max_proc_delay: 1  #Sets the maximum allowed DL processing delay in slots
 
 log:
-  all_level: info
-  rrc_level: debug
+  filename: /tmp/gnb1.log            # Path of the log file.
+  phy_level: debug
 
 pcap:
   ngap_filename: /tmp/gnb1_ngap.pcap     # Optional TEXT (/tmp/gnb_ngap.pcap). Path for NGAP PCAPs. 
