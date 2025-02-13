@@ -4,7 +4,7 @@
 run_traceroute() {
   for i in {1..50}
   do
-    result=$(traceroute -U -f 2 -m 2 -p 33435 10.45.2.10)
+    result=$(traceroute -U -f 2 -m 2 -p 33435 -q 10 10.45.2.10)
     echo "$(date), $result" >> traceroute_results.csv
     sleep $((RANDOM % 68 + 5))  # Sleep for a random time between 5 to 72 seconds
   done
