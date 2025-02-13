@@ -73,8 +73,8 @@ cell_cfg:
   pdsch:
     mcs_table: qam256
     olla_target_bler: 0.1
-#    nof_harqs: 16                   # Sets the number of Downlink HARQ processes.
-#    max_nof_harq_retxs: 4           # Enable HARQ retransmissions.
+    nof_harqs: 16                   # Sets the number of Downlink HARQ processes.
+    max_nof_harq_retxs: 4           # Enable HARQ retransmissions.
   ssb:
     ssb_period: 20  #Period of SSB scheduling in milliseconds
   pusch:    #This is copied from low_latency.yml file in srsRAN_Project/config directory
