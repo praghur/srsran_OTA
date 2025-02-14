@@ -18,6 +18,9 @@ sudo tcpdump -i enx5e4cb4adde52 -w ue1_capture.pcap
 sudo tshark -i enx7a6202a42b3f -T fields -e frame.time_epoch -e ip.src -e ip.dst -e ip.id -e udp.srcport -e udp.dstport -E header=y -E separator=, -E quote=d > ue2_results.csv
 sudo tcpdump -i enx7a6202a42b3f -w ue2_capture.pcap
 
+sudo tshark -i enxa686a3fc16a2 -T fields -e frame.time_epoch -e ip.src -e ip.dst -e ip.id -e udp.srcport -e udp.dstport -E header=y -E separator=, -E quote=d > ueTraff_results.csv
+sudo tcpdump -i enxa686a3fc16a2 -w ueTraff_capture.pcap
+
 
 #Save results from CN
 scp praghur@pc817.emulab.net:cn_results.csv /home/ubuntu/
