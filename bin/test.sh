@@ -1,8 +1,8 @@
-sudo ip netns exec ue1 ip route add 10.45.2.10 via 10.45.0.1
-sudo ip netns exec ue1 traceroute -U -f 2 -m 2 -p 33435 10.45.2.10
+sudo ip route add 10.45.2.10 via 10.45.0.1
+sudo traceroute -U -f 2 -m 2 -p 33435 10.45.2.10
 
-sudo ip netns exec ue2 ip route add 10.45.1.10 via 10.45.0.1
-sudo ip netns exec ue2 traceroute -U -f 2 -m 2 -p 33435 10.45.1.10
+sudo ip route add 10.45.1.10 via 10.45.0.1
+sudo traceroute -U -f 2 -m 2 -p 33435 10.45.1.10
 
 #Install tshark in UE1 and UE2
 sudo apt update
@@ -12,11 +12,11 @@ sudo apt install -y tshark
 sudo tshark -i ogstun -T fields -e frame.time_epoch -e ip.src -e ip.dst -e ip.id -e udp.srcport -e udp.dstport -E header=y -E separator=, -E quote=d > cn_results.csv
 sudo tcpdump -i ogstun -w ogstun_capture.pcap
 
-sudo ip netns exec ue1 tshark -i tun_srsue -T fields -e frame.time_epoch -e ip.src -e ip.dst -e ip.id -e udp.srcport -e udp.dstport -E header=y -E separator=, -E quote=d > ue1_results.csv
-sudo ip netns exec ue1 tcpdump -i tun_srsue -w ue1_capture.pcap
+sudo tshark -i tun_srsue -T fields -e frame.time_epoch -e ip.src -e ip.dst -e ip.id -e udp.srcport -e udp.dstport -E header=y -E separator=, -E quote=d > ue1_results.csv
+sudo tcpdump -i tun_srsue -w ue1_capture.pcap
 
-sudo ip netns exec ue2 tshark -i tun_srsue -T fields -e frame.time_epoch -e ip.src -e ip.dst -e ip.id -e udp.srcport -e udp.dstport -E header=y -E separator=, -E quote=d > ue2_results.csv
-sudo ip netns exec ue2 tcpdump -i tun_srsue -w ue2_capture.pcap
+sudo tshark -i tun_srsue -T fields -e frame.time_epoch -e ip.src -e ip.dst -e ip.id -e udp.srcport -e udp.dstport -E header=y -E separator=, -E quote=d > ue2_results.csv
+sudo tcpdump -i tun_srsue -w ue2_capture.pcap
 
 
 #Save results from CN
