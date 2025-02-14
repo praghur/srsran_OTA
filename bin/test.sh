@@ -12,11 +12,11 @@ sudo apt install -y tshark
 sudo tshark -i ogstun -T fields -e frame.time_epoch -e ip.src -e ip.dst -e ip.id -e udp.srcport -e udp.dstport -E header=y -E separator=, -E quote=d > cn_results.csv
 sudo tcpdump -i ogstun -w ogstun_capture.pcap
 
-sudo tshark -i tun_srsue -T fields -e frame.time_epoch -e ip.src -e ip.dst -e ip.id -e udp.srcport -e udp.dstport -E header=y -E separator=, -E quote=d > ue1_results.csv
-sudo tcpdump -i tun_srsue -w ue1_capture.pcap
+sudo tshark -i enx5e4cb4adde52 -T fields -e frame.time_epoch -e ip.src -e ip.dst -e ip.id -e udp.srcport -e udp.dstport -E header=y -E separator=, -E quote=d > ue1_results.csv
+sudo tcpdump -i enx5e4cb4adde52 -w ue1_capture.pcap
 
-sudo tshark -i tun_srsue -T fields -e frame.time_epoch -e ip.src -e ip.dst -e ip.id -e udp.srcport -e udp.dstport -E header=y -E separator=, -E quote=d > ue2_results.csv
-sudo tcpdump -i tun_srsue -w ue2_capture.pcap
+sudo tshark -i enx7a6202a42b3f -T fields -e frame.time_epoch -e ip.src -e ip.dst -e ip.id -e udp.srcport -e udp.dstport -E header=y -E separator=, -E quote=d > ue2_results.csv
+sudo tcpdump -i enx7a6202a42b3f -w ue2_capture.pcap
 
 
 #Save results from CN
