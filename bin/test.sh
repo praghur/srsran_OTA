@@ -35,7 +35,7 @@ scp root@ota-nuc1.emulab.net:/local/repository/etc/srsran/traceroute_results.csv
 scp root@pc04-meb.emulab.net:/tmp/gnb1_mac.pcap /home/ubuntu/
 scp root@pc04-meb.emulab.net:/tmp/gnb1_ngap.pcap /home/ubuntu/
 scp root@pc04-meb.emulab.net:/tmp/gnb1-trace.log /home/ubuntu/
-
+scp root@pc04-meb.emulab.net:/tmp/gnb1.log /home/ubuntu/
 
 #Save results from UE2
 scp root@nuc1.web.powderwireless.net:ue2_results.csv /home/ubuntu/
