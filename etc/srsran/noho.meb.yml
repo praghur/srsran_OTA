@@ -137,19 +137,22 @@ expert_execution:
       #      enable_dl_parallelization: true
 
 log:
-  filename: /var/log/gnb.log
-  all_level: warning
-  #phy_level: info
+  filename: /var/log/gnb2.log
+  all_level: none
+  phy_level: debug
   #mac_level: debug
   # ofh_level: info
   # fapi_level: info
-  tracing_filename: gnb_trace.log
+  tracing_filename: gnb2_trace.log
 
 pcap:
-  mac_enable: false
-  mac_filename: /tmp/gnb_mac.pcap
-  ngap_enable: false
-  ngap_filename: /tmp/gnb_ngap.pcap
+  mac_enable: true
+  mac_type: udp 
+  mac_filename: /tmp/gnb2_mac.pcap
+  ngap_enable: true
+  ngap_filename: /tmp/gnb2_ngap.pcap
+  n3_filename: /tmp/gnb2_n3.pcap 
+  n3_enable: true  
 
 metrics:
   autostart_stdout_metrics: true
