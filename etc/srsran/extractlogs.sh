@@ -1,19 +1,27 @@
 #!/bin/bash
 
-# Define the log file and output CSV file
-log_file="/tmp/gnb1.log"
-output_csv="/tmp/phy_logs.csv"
+# Define the log file and output CSV files
+log_file="/home/ubuntu/gnb1.log"
+output_csv1="/home/ubuntu/snr_logs.csv"
+output_csv2="/home/ubuntu/harq_logs.csv"
 
-# Print the CSV header
-echo "Log Line" > $output_csv
+# Print the CSV headers
+echo "Log Line" > $output_csv1
+echo "Log Line" > $output_csv2
 
 # Read the log file line by line
 while IFS= read -r line; do
     # Check if the line contains "2025-02-", "sinr_ch_est", or "sinr_eq[sel]"
-    if [[ $line == *"2025-02-"* || $line == *"sinr_ch_est"* || $line == *"sinr_eq[sel]"* || $line == *"rv="* ]]; then
-        # Append the entire line to the CSV file
-        echo "$line" >> $output_csv
+    if [[ $line == *"2025-02-"* || $line == *"sinr_ch_est"* || $line == *"sinr_eq[sel]"* ]]; then
+        # Append the entire line to the first CSV file
+        echo "$line" >> $output_csv1
+    fi
+
+    # Check if the line contains "2025-02-" and "rv="
+    if [[ $line == *"2025-02-"* && $line == *"rv="* ]]; then
+        # Append the entire line to the second CSV file
+        echo "$line" >> $output_csv2
     fi
 done < "$log_file"
 
-echo "Extraction complete. The CSV file is saved at $output_csv"
+echo "Extraction complete. The CSV files are saved at $output_csv1 and $output_csv2"
