@@ -17,10 +17,10 @@ while IFS= read -r line; do
         echo "$line" >> $output_csv1
     fi
 
-    # Check if the line contains "2025-02-" and "rv="
-    if [[ $line == *"2025-02-"* && $line == *"rv="* ]]; then
-        # Append the entire line to the second CSV file
-        echo "$line" >> $output_csv2
+    # Check if the line contains "rv=" and does not contain the date. This is done to reduce traffic
+    if [[ $line == *"rv="* && $line != *"2025-"* ]]; then
+    # Append the entire line to the second CSV file
+    echo "$line" >> $output_csv2
     fi
 done < "$log_file"
 
