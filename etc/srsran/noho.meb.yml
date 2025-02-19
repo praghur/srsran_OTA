@@ -98,6 +98,8 @@ cell_cfg:
     mcs_table: qam256
     olla_target_bler: 0.1
     dmrs_additional_position: 2
+    nof_harqs: 16                   # Sets the number of Downlink HARQ processes.
+    max_nof_harq_retxs: 4           # Enable HARQ retransmissions.
   pusch:
     p0_nominal_with_grant: -76
     olla_target_bler: 0.1
