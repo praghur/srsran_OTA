@@ -31,6 +31,11 @@ scp root@ota-nuc1.emulab.net:ue1_results.csv /home/ubuntu/
 scp root@ota-nuc1.emulab.net:ue1_capture.pcap /home/ubuntu/
 scp root@ota-nuc1.emulab.net:/local/repository/etc/srsran/traceroute_results.csv /home/ubuntu/
 
+#Save results from UE2 - Background data
+scp root@ota-nuc2.emulab.net:ueTraff_results.csv /home/ubuntu/
+scp root@ota-nuc2.emulab.net:ueTraff_capture.pcap /home/ubuntu/
+
+
 #Save results from gnb1
 scp root@pc04-meb.emulab.net:/tmp/gnb1_mac.pcap /home/ubuntu/
 scp root@pc04-meb.emulab.net:/tmp/gnb1_ngap.pcap /home/ubuntu/
