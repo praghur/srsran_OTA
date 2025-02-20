@@ -46,7 +46,7 @@ cell_cfg:
     nof_ul_symbols: 0
   pucch:
     #    sr_period_ms: 2  #SR is an Uplink Physical Layer message from UE to Network, saying "I have some data to send to you. Would you send me some Grant for me to send the data ?"
-      #    min_k1: 2 #Sets the minimum value of K1 (difference in slots between PDSCH and HARQ-ACK). Lower k1 values will reduce latency, but place a stricter requirement on the UE decode latency.
+    min_k1: 2 #Sets the minimum value of K1 (difference in slots between PDSCH and HARQ-ACK). Lower k1 values will reduce latency, but place a stricter requirement on the UE decode latency.
   mac_cell_group:
     bsr_cfg:  #Buffer status report configuration parameters
       periodic_bsr_timer: 1  #Sets the periodic Buffer Status Report Timer value in nof. subframes. 
