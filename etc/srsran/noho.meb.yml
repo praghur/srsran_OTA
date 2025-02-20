@@ -101,17 +101,19 @@ cell_cfg:
     nof_harqs: 16                   # Sets the number of Downlink HARQ processes.
     max_nof_harq_retxs: 4           # Enable HARQ retransmissions.
   pusch:
+    min_k2: 2
     p0_nominal_with_grant: -76
     olla_target_bler: 0.1
     dmrs_additional_position: 2
+  pucch:
+    sr_period_ms: 1  #SR is an Uplink Physical Layer message from UE to Network, saying "I have some data to send to you. Would you send me some Grant for me to send the data ?"
+    min_k1: 2 #Sets the minimum value of K1 (difference in slots between PDSCH and HARQ-ACK). Lower k1 values will reduce latency, but place a stricter requirement on the UE decode latency.
   slicing:
    - sst: 1
      sd: 1
-
-      #slicing:
-      #  -
-      #    sst: 1
-      #    sd: 1
+     sched_cfg:
+       min_prb_policy_ratio: 90
+       max_prb_policy_ratio: 100
 
 expert_execution:
   threads:
