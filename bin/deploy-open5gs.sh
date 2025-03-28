@@ -69,15 +69,26 @@ chmod +x open5gs-dbctl
 ./open5gs-dbctl type 999990000000001 1  # APN type IPV4
 ./open5gs-dbctl static_ip 999990000000001 10.45.2.10
 
-  
 ##For UE3 connecting with gNB3
 ./open5gs-dbctl add_ue_with_slice 999990000000002 00112233445566778899aabbccddeeff 0ed47545168eafe2c39c075829a7b61f internet 3 0x000001 # IMSI,K,OPC
 ./open5gs-dbctl type 999990000000002 1  # APN type IPV4
 ./open5gs-dbctl static_ip 999990000000002 10.45.3.10
 
-##For UE4 connecting with gNB4
-./open5gs-dbctl add_ue_with_slice 999990000000003 00112233445566778899aabbccddeeff 0ed47545168eafe2c39c075829a7b61f internet 4 0x000001 # IMSI,K,OPC
-./open5gs-dbctl type 999990000000003 1  # APN type IPV4
-./open5gs-dbctl static_ip 999990000000003 10.45.4.10
+#Install Web UI for UE DBCTL
+sudo apt update
+sudo apt install -y ca-certificates curl gnupg
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+
+# Create deb repository
+NODE_MAJOR=20
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+
+# Run Update and Install
+sudo apt update
+sudo apt install nodejs -y
+curl -fsSL https://open5gs.org/open5gs/assets/webui/install | sudo -E bash -
 
 touch $SRCDIR/open5gs-setup-complete
+#For WebUI
+#ssh root@pc05-fort.emulab.net -C -L 9999:127.0.0.1:9999 

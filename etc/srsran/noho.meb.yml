@@ -1,0 +1,164 @@
+gnb_id: 103
+gnb_id_bit_length: 32
+
+qos:
+
+amf:
+  addr: 192.168.1.1
+  bind_addr: 192.168.1.3
+  
+  #cu_cp:
+  #  amf:
+  #    addr: 192.168.1.1
+  #    bind_addr: 192.168.1.3
+  #    supported_tracking_areas:
+  #      - tac: 1
+  #        plmn_list:
+  #          - plmn: "99999"
+  #            tai_slice_support_list:
+  #              - sst: 1
+  #                sd: 1
+  #  inactivity_timer: 7200
+
+cells:
+  -
+    pci: 1
+    dl_arfcn: 624668
+    prach:
+      prach_root_sequence_index: 0
+        #  -
+        #    pci: 4
+        #    dl_arfcn: 624668
+        #    prach:
+        #      prach_root_sequence_index: 64
+
+ru_ofh:
+  t1a_max_cp_dl: 500
+  t1a_min_cp_dl: 450
+  t1a_max_cp_ul: 350
+  t1a_min_cp_ul: 290
+  t1a_max_up: 360
+  t1a_min_up: 300
+  ta4_max: 400
+  ta4_min: 0
+  is_prach_cp_enabled: true
+  compr_method_ul: bfp
+  compr_bitwidth_ul: 9
+  compr_method_dl: bfp
+  compr_bitwidth_dl: 9
+  compr_method_prach: bfp
+  compr_bitwidth_prach: 9
+  enable_ul_static_compr_hdr: false
+  enable_dl_static_compr_hdr: false
+  iq_scaling: 10.0
+  cells:
+    - network_interface: enp134s0f0
+      ru_mac_addr: 70:b3:d5:e1:5d:25
+      du_mac_addr: f8:f2:1e:4c:b2:b0
+      vlan_tag_cp: 22
+      vlan_tag_up: 22
+      prach_port_id: [4, 5]
+      #dl_port_id: [0, 1]
+      dl_port_id: [0, 1, 2, 3]
+      ul_port_id: [0, 1]
+        #- network_interface: enp134s0f1
+        #  ru_mac_addr: 70:b3:d5:e1:5d:13
+        #  du_mac_addr: f8:f2:1e:4c:b2:b1
+        #  vlan_tag_cp: 24
+        #  vlan_tag_up: 24
+        #  prach_port_id: [4, 5]
+        #  dl_port_id: [0, 1]
+        #  ul_port_id: [0, 1]
+
+cell_cfg:
+  dl_arfcn: 624668
+  band: 78
+  channel_bandwidth_MHz: 20
+  common_scs: 30
+  plmn: "99999"
+  tac: 1
+  nof_antennas_dl: 4
+  nof_antennas_ul: 2
+  prach:
+    prach_config_index: 159
+    prach_root_sequence_index: 1
+    zero_correlation_zone: 0
+    prach_frequency_start: 2
+    preamble_trans_max: 50
+    power_ramping_step_db: 6
+  tdd_ul_dl_cfg:
+    dl_ul_tx_period: 10
+    nof_dl_slots: 7
+    nof_dl_symbols: 6
+    nof_ul_slots: 2
+    nof_ul_symbols: 4
+  ssb:
+    ssb_block_power_dbm: -20
+  pdsch:
+    mcs_table: qam256
+    olla_target_bler: 0.1
+    dmrs_additional_position: 2
+    nof_harqs: 16                   # Sets the number of Downlink HARQ processes.
+    max_nof_harq_retxs: 4           # Enable HARQ retransmissions.
+  pusch:
+    min_k2: 2
+    p0_nominal_with_grant: -76
+    olla_target_bler: 0.1
+    dmrs_additional_position: 2
+  pucch:
+ #   sr_period_ms: 1  #SR is an Uplink Physical Layer message from UE to Network, saying "I have some data to send to you. Would you send me some Grant for me to send the data ?"
+    min_k1: 2 #Sets the minimum value of K1 (difference in slots between PDSCH and HARQ-ACK). Lower k1 values will reduce latency, but place a stricter requirement on the UE decode latency.
+  slicing:
+   - sst: 1
+     sd: 1
+     sched_cfg:
+       min_prb_policy_ratio: 90
+       max_prb_policy_ratio: 100
+
+expert_execution:
+  threads:
+    upper_phy:
+      nof_ul_threads: 4
+      nof_dl_threads: 4
+      nof_pusch_decoder_threads: 4
+    ofh:
+      enable_dl_parallelization: true
+
+      #expert_execution:
+      #  affinities:
+      #    l1_dl_cpus: 17,19,21,23,25,27
+      #    l1_ul_cpus: 29,31,33
+      #    l2_cell_cpus: 35,37,39
+      #    ru_cpus: 9,7,11,13,15
+      #    low_priority_cpus: 1,3,5
+      #  threads:
+      #    upper_phy:
+      #      nof_ul_threads: 2
+      #      nof_pusch_decoder_threads: 2
+      #      nof_pdsch_threads: 8
+      #      nof_dl_threads: 4
+      #    ofh:
+      #      enable_dl_parallelization: true
+
+log:
+  filename: /var/log/gnb2.log
+  all_level: none
+  phy_level: debug
+  #mac_level: debug
+  # ofh_level: info
+  # fapi_level: info
+  tracing_filename: gnb2_trace.log
+
+pcap:
+  mac_enable: true
+  mac_type: udp 
+  mac_filename: /tmp/gnb2_mac.pcap
+  ngap_enable: true
+  ngap_filename: /tmp/gnb2_ngap.pcap
+  n3_filename: /tmp/gnb2_n3.pcap 
+  n3_enable: true  
+
+metrics:
+  autostart_stdout_metrics: true
+
+

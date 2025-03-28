@@ -1,6 +1,38 @@
 gnb_id: 200
 gnb_id_bit_length: 32
 
+qos:
+  -
+    five_qi: 85 # E.g. Conversational Voice
+    rlc:
+      mode: um-bidir
+      um-bidir:
+        tx:
+          sn: 12
+          queue-size: 4096
+        rx:
+          sn: 12
+          t-reassembly: 50
+    pdcp:
+      integrity_required: false
+      tx:
+        sn: 12
+        discard_timer: -1
+        status_report_required: false
+      rx:
+        sn: 12
+        t_reordering: 80
+        out_of_order_delivery: false
+    f1u_du:
+      backoff_timer: 10
+    f1u_cu_up:
+      backoff_timer: 10
+    mac:
+      lc_priority: 4
+      lc_group_id: 1
+      bucket_size_duration_ms: 5
+      prioritized_bit_rate_kBps: 65537
+      
 amf:
   addr: 192.168.1.1
   bind_addr: 192.168.1.3
@@ -29,16 +61,18 @@ cell_cfg:
   pci: 1
   pdsch:
     mcs_table: qam256
+    nof_harqs: 16                   # Sets the number of Downlink HARQ processes.
+    max_nof_harq_retxs: 4           # Enable HARQ retransmissions.
   ssb:
     ssb_period: 20
   pusch:    #This is copied from low_latency.yml file in srsRAN_Project/config directory
     min_k2: 2
   tdd_ul_dl_cfg:
-    dl_ul_tx_period: 4
-    nof_dl_slots: 2
+    dl_ul_tx_period: 10
+    nof_dl_slots: 6
     nof_dl_symbols: 0
-    nof_ul_slots: 1
-    nof_ul_symbols: 11
+    nof_ul_slots: 3
+    nof_ul_symbols: 0
   pucch:
     sr_period_ms: 2
     min_k1: 2
@@ -57,8 +91,9 @@ expert_phy:
   max_proc_delay: 1
 
 log:
-  all_level: info
-  rrc_level: debug
+  filename: /tmp/gnb2.log            # Path of the log file.
+  phy_level: debug
+  hex_max_size: 0
 
 pcap:
   ngap_filename: /tmp/gnb2_ngap.pcap     # Optional TEXT (/tmp/gnb_ngap.pcap). Path for NGAP PCAPs. 

@@ -12,17 +12,17 @@ ru_sdr:
   device_args: type=x300
   tx_gain: 30
   rx_gain: 30
-  srate: 92.16
+  srate: 46.08
   lo_offset: 45
-  clock: internal
-  sync: internal
+  clock: external
+  sync: external
   time_alignment_calibration: 0
 
 cell_cfg:
   #dl_arfcn: 632628
-  dl_arfcn: 631334
+  dl_arfcn: 630048
   band: 78
-  channel_bandwidth_MHz: 20
+  channel_bandwidth_MHz: 40
   common_scs: 30
   nof_antennas_dl: 1
   nof_antennas_ul: 1
@@ -31,46 +31,47 @@ cell_cfg:
   pci: 1  #Physical Cell ID
   pdsch:
     mcs_table: qam256
+    olla_target_bler: 0.1
+    nof_harqs: 16                   # Sets the number of Downlink HARQ processes.
+    max_nof_harq_retxs: 4           # Enable HARQ retransmissions.
   ssb:
     ssb_period: 20  #Period of SSB scheduling in milliseconds
   pusch:    #This is copied from low_latency.yml file in srsRAN_Project/config directory
     min_k2: 2  #Sets the minimum value of K2 (difference in slots between PDCCH and PUSCH). K2: Is the offset between the DL slot where the PDCCH(DCI) for Uplink scheduling is received and the UL Slot where the UL data need to sent on PUSCH.
   tdd_ul_dl_cfg:
-    dl_ul_tx_period: 4 #Sets the TDD pattern periodicity in slots. The combination of this value and the chosen numerology must lead to a TDD periodicity of 0.5, 0.625, 1, 1.25, 2, 2.5, 3, 4, 5 or 10 milliseconds
-    nof_dl_slots: 2
-    nof_dl_symbols: 0
-    nof_ul_slots: 1
-    nof_ul_symbols: 11
+    dl_ul_tx_period: 10 #Sets the TDD pattern periodicity in slots. The combination of this value and the chosen numerology must lead to a TDD periodicity of 0.5, 0.625, 1, 1.25, 2, 2.5, 3, 4, 5 or 10 milliseconds
+    nof_dl_slots: 7
+    nof_dl_symbols: 9
+    nof_ul_slots: 2
+    nof_ul_symbols: 0
   pucch:
-    sr_period_ms: 2  #SR is an Uplink Physical Layer message from UE to Network, saying "I have some data to send to you. Would you send me some Grant for me to send the data ?"
+    sr_period_ms: 1  #SR is an Uplink Physical Layer message from UE to Network, saying "I have some data to send to you. Would you send me some Grant for me to send the data ?"
     min_k1: 2 #Sets the minimum value of K1 (difference in slots between PDSCH and HARQ-ACK). Lower k1 values will reduce latency, but place a stricter requirement on the UE decode latency.
   mac_cell_group:
     bsr_cfg:  #Buffer status report configuration parameters
       periodic_bsr_timer: 1  #Sets the periodic Buffer Status Report Timer value in nof. subframes. 
   slicing:
    - sst: 1
-     sd: 0x000001
+     sd: 1
      sched_cfg:
        min_prb_policy_ratio: 90
        max_prb_policy_ratio: 100
-#   - sst: 3
-#     sd: 0x000001
-#     sched_cfg:
-#       min_prb_policy_ratio: 50
-#       max_prb_policy_ratio: 75
+
 expert_phy:
   max_request_headroom_slots: 0 #PHR is a type of MAC CE(MAC Control Element) that report the headroom between the current UE Tx power (estimated power) and the nominal power. eNodeB (Network) use this report value to estimate how much uplink bandwidth a UE can use for a specific subframe. Since the more resource block the UE is using, the higher UE Tx power gets, but the UE Tx power should not exceed the max power defined in the specification. So UE cannot use much resource block (bandwidth) if it does not have enough power headroom.
   max_proc_delay: 1  #Sets the maximum allowed DL processing delay in slots
 
 log:
-  all_level: info
-  rrc_level: debug
+  filename: /tmp/gnb1.log            # Path of the log file.
+  phy_level: debug
+  tracing_filename: /tmp/gnb1-trace.log
+
 
 pcap:
   ngap_filename: /tmp/gnb1_ngap.pcap     # Optional TEXT (/tmp/gnb_ngap.pcap). Path for NGAP PCAPs. 
-  ngap_enable: false                    # Optional BOOLEAN (false). Enable/disable NGAP packet capture. Supported: [false, true].
+  ngap_enable: true                    # Optional BOOLEAN (false). Enable/disable NGAP packet capture. Supported: [false, true].
   n3_filename: /tmp/gnb1_n3.pcap         # Optional TEXT (/tmp/gnb_n3.pcap). Path for N3 PCAPs. 
-  n3_enable: true                      # Optional BOOLEAN (false). Enable/disable N3 packet capture. Supported: [false, true].
+  n3_enable: true                    # Optional BOOLEAN (false). Enable/disable N3 packet capture. Supported: [false, true].
   e1ap_filename: /tmp/gnb1_e1ap.pcap     # Optional TEXT (/tmp/gnb_e1ap.pcap). Path for E1AP PCAPs. 
   e1ap_enable: false                    # Optional BOOLEAN (false). Enable/disable E1AP packet capture. Supported: [false, true].
   f1ap_filename: /tmp/gnb1_f1ap.pcap     # Optional TEXT (/tmp/gnb_f1ap.pcap). Path for F1AP PCAPs. 
@@ -85,4 +86,3 @@ pcap:
   mac_enable: true                     # Optional BOOLEAN (false). Enable/disable MAC packet capture. Supported: [false, true].
   e2ap_filename: /tmp/gnb1_e2ap.pcap     # Optional TEXT (/tmp/gnb_e2ap.pcap). Path for E2AP PCAPs. 
   e2ap_enable: false                    # Optional BOOLEAN (false). Enable/disable E2AP packet capture. Supported: [false, true].
-
